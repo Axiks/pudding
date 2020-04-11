@@ -40,27 +40,5 @@ return [
     | the user.
     |
     */
-    'username' => 'email',
-    /*
-    |--------------------------------------------------------------------------
-    | Migrations
-    |--------------------------------------------------------------------------
-    |
-    | Use the provided migrations for the socialite providers
-    | If you publish the migrations set this to false.
-    |
-    */
-    'migrations' => false,
-    /*
-    |--------------------------------------------------------------------------
-    | Settings for email verification
-    |--------------------------------------------------------------------------
-    |
-    | Update this values for your use case
-    |
-    */
-    'verify_email' => [
-        'base_url' => env('FRONT_URL').'/email-verify',
-    ],
-
+    'username' => 'email'
 ];
