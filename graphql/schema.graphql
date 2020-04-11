@@ -1,0 +1,116 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"Can be used as an argument to upload files using https://github.com/jaydenseric/graphql-multipart-request-spec" 
+scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
+
+type Query {
+    hello: String!
+    greet(name: String!): String
+    users: [User!]! @paginate(type: "paginator" model: "App\\User")
+    user(id: ID @eq): User @find(model: "App\\User")
+    meets: [Meet!]! @all
+    meet (id: Int! @eq): Meet @find
+    clubs: [Club!]! @all
+    club (id: Int! @eq): Club @find
+    me: User @middleware(checks:["auth:api"]) @auth
+}
+
+type Mutation {
+    upload(
+        file: Upload!
+    ): ID!
+    uploadAvatarClub(
+        id: ID!
+        file: Upload!
+    ): String
+    uploadCoverClub(
+        id: ID!
+        file: Upload!
+    ): String
+    destroyAvatarClub(
+        id: ID!
+    ): String
+    createClub(
+        name: String!
+        club_id: String!
+        user_id: String!
+        description: String!
+        background_src: String
+        creator_id: String!
+    ): Club @create(model: "App\\Club")
+    updateClub(
+        name: String!
+        description: String!
+        avatar_src: String
+        background_src: String
+    ): Club @update(model: "App\\Club")
+    deleteClub(
+        id: ID!
+    ):  Club @delete(model: "App\\Club")
+    
+    createMeet(
+        title: String!
+        description: String!
+        beginning_date: DateTime!
+        end_date: DateTime!
+        map_point: String!
+        club_id: String!
+        user_id: String!
+    ): Meet @create(model: "App\\Meet")
+    updateMeet(
+        title: String!
+        description: String!
+        beginning_date: DateTime!
+        end_date: DateTime!
+        map_point: String!
+    ): Meet @update(model: "App\\Meet")
+    deleteMeet(
+        id: ID
+    ): User @delete(model: "App\\Meet")
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    meets: [Meet!]! @hasMany
+}
+
+type Club {
+    id: ID!
+    name: String!
+    description: String!
+    avatar_src: String @field(resolver: "App\\Http\\GraphQL\\Query@avatar_src")
+    cover_src: String @field(resolver: "App\\Http\\GraphQL\\Query@cover_src")
+    choto: String
+    meets: [Meet!]! @hasMany
+    creator: User! @belongsTo
+}
+
+type Meet {
+    id: ID!
+    club_id: String!
+    user_id: String!
+    title: String!
+    description: String!
+    beginning_date: DateTime!
+    end_date: DateTime!
+    map_point: String!
+    user: User! @belongsTo
+    club: Club! @belongsTo
+}
+
+type File {
+    id: ID!
+    title: String!
+    type: String!
+    src: String!
+    size: String!
+    upload_user: String!
+}
