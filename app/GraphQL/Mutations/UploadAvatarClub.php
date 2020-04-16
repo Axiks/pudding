@@ -26,6 +26,7 @@ class UploadAvatarClub
         $file = $args['file'];
         try {
             $fileSrc = $file->storePublicly('uploads');//SAVE
+            Storage::put('uploads', $file);
         }catch (ModelNotFoundException $exception) {
             return $exception->getMessage();
         }
@@ -46,6 +47,7 @@ class UploadAvatarClub
             if($club){
                 $club->avatar_src = $files->src;
                 $club->save();
+                echo($files->src);//
             }
             else{
                 return "ID not fund";

@@ -16,6 +16,9 @@ type Query {
     meet (id: Int! @eq): Meet @find
     clubs: [Club!]! @all
     club (id: Int! @eq): Club @find
+    hobby_groups: [Hobby_group!]! @all
+    hobby_lists: [Hobby_list!]! @all
+    hobby_tags: [Hobby_tag!]! @all
     me: User @middleware(checks:["auth:api"]) @auth
 }
 
@@ -36,10 +39,8 @@ type Mutation {
     ): String
     createClub(
         name: String!
-        club_id: String!
-        user_id: String!
         description: String!
-        background_src: String
+        cover_src: String
         creator_id: String!
     ): Club @create(model: "App\\Club")
     updateClub(
@@ -73,15 +74,6 @@ type Mutation {
     ): User @delete(model: "App\\Meet")
 }
 
-type User {
-    id: ID!
-    name: String!
-    email: String!
-    created_at: DateTime!
-    updated_at: DateTime!
-    meets: [Meet!]! @hasMany
-}
-
 type Club {
     id: ID!
     name: String!
@@ -113,4 +105,24 @@ type File {
     src: String!
     size: String!
     upload_user: String!
+}
+
+type Hobby_group {
+    id: ID!
+    name: String!
+    hobby_list: [Hobby_list!]! @hasMany
+}
+
+type Hobby_list {
+    id: ID!
+    name: String!
+    hobby_group: Hobby_group @belongsTo
+    hobby_tags: [Hobby_tag!]! @hasMany
+    captivate: [User!]! @hasMany
+}
+
+type Hobby_tag {
+    id: ID!
+    name: String!
+    hobby_list: Hobby_list @belongsTo
 }

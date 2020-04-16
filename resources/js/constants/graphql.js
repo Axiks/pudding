@@ -133,3 +133,36 @@ export const MEET_QUERY = gql`
     }
   }
 `
+
+export const CREATE_USER_MUTATION = gql`
+  # 7
+  mutation register($name: String!, $surname: String!, $email: String!, $password: String!, $password_confirmation: String!, $birthday: String!) {
+      register(
+        input: {
+        name: $name,
+        surname: $surname,
+        email: $email,
+        password: $password,
+        password_confirmation: $password_confirmation,
+        birthday: $birthday,
+        }
+      ) {
+        tokens{
+          access_token
+          token_type
+        }
+      }
+  }
+`
+
+export const USER_QUERY = gql`
+  # 7
+  query user($id: Int!) {
+    user(id: $id) {
+      name,
+      surname,
+      description,
+      birthday
+    }
+  }
+`

@@ -1,18 +1,19 @@
 <template>
   <div class="component">
     <div class="flex flex-column mt3">
-      <input
+    <h2>Створити клуб</h2>
+      <p>Ім'я</p><input
         class="mb2"
         v-model="name"
         type="text"
         placeholder="A name">
-      <input
+      <p>Опис</p><input
         class="mb2"
         v-model="description"
         type="text"
         placeholder="The Description">
     </div>
-    <button @click="createClub()">Submit</button>
+    <button @click="createClub()">Submitt</button>
   </div>
 </template>
 
@@ -22,23 +23,23 @@
     name: 'CreateClub',
     data () {
       return {
-        name: '',
-        description: '',
-        background_src: '',
-        creator_id: '1'
+        name: ' ',
+        description: ' ',
+        cover_src: 'def',
+        creator_id: '1544'
       }
     },
     methods: {
       createClub () {
         console.log(this.$data)
         // ... you'll implement this in a bit
-        const { name, description, background_src, creator_id } = this.$data
+        const { name, description, cover_src, creator_id} = this.$data
         this.$apollo.mutate({
             mutation: CREATE_CLUB_MUTATION,
             variables: {
             name,
             description,
-            background_src,
+            cover_src,
             creator_id
             }
         })

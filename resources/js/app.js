@@ -32,6 +32,8 @@ Vue.component('upload-cover', require('./components/UploadCover.vue').default);
 Vue.component('destroy-avatar-club', require('./components/DestroyAvatarClub.vue').default);
 Vue.component('hello-component', require('./components/Hello.vue').default);
 Vue.component('show-club', require('./components/ShowClub.vue').default);
+Vue.component('register-user', require('./components/RegisterUser.vue').default);
+
 
 
 /**
@@ -108,6 +110,9 @@ var Clubs = require('./components/ShowClubs.vue');
 var Hello = require('./components/Hello.vue');
 var Meet = require('./components/ShowMeet.vue');
 var firstPage = require('./components/FirstPage.vue');
+var registerUser = require('./components/RegisterUser.vue');
+var showUser = require('./components/ShowUser.vue');
+
 
 var router = new VueRouter({
   // mode: 'history',
@@ -120,6 +125,8 @@ var router = new VueRouter({
     { path: '/meet/:id', name: 'meet', component: Meet.default },
     { path: '/hello', component: Hello.default },
     { path: '/firstPage', name: 'firstPage', component: firstPage.default },
+    { path: '/registration', name: 'registerUser', component: registerUser.default },
+    { path: '/user/:id', name: 'user', component: showUser.default },
   ]
 })
 

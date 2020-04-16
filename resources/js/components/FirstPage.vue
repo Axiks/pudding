@@ -2,15 +2,16 @@
     <div class="container-fluid">
     <section class="row no-gutter align-items-center">
         <div class="col-12 text-center p-0 d-flex align-items-center">
-            <img :src="'/storage/default/default-cover.jpg'" class="img-fluid position-relative mx-auto" style="height: 810px; width: 100%;">
+            <img :src="'/storage/default/default-cover.jpg'" class="img-fluid position-relative mx-auto" style="height: 100%; width: 100%;">
             <div class="dashboard w-100 position-absolute my-auto">
                         <h1>Biskvit</h1>
                         <h2>Знайди своє захоплення</h2>
-                        <h2>Поділись ним</h2>
                 <div class="">
+                    <a href="/#/registration" rel="noopener noreferrer">
                         <button id="registration">
                             <span>Реєстрація</span>
                         </button>
+                    </a>
                         <button id="login">
                             <span>Вхід</span>
                         </button>

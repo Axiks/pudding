@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'surname', 'description', 'birthday', 'exact_birthday', 'link', 'languages', 'avatar_src','email', 'password',
     ];
 
     /**
@@ -40,6 +40,14 @@ class User extends Authenticatable
     public function meets()
     {
         return $this->hasMany(Meet::class);
+    }
+
+    /**
+     * Хобби, принадлежащие пользователю.
+    */
+    public function hobbies()
+    {
+        return $this->belongsToMany('App\Hobby_list', 'user_hobby', 'user_id', 'hobby_list_id');
     }
 
 }
