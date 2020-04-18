@@ -21,7 +21,6 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('first-page', require('./components/FirstPage.vue').default);
 Vue.component('create-club', require('./components/CreateClub.vue').default);
 Vue.component('create-meet', require('./components/CreateMeet.vue').default);
@@ -30,7 +29,6 @@ Vue.component('show-meets', require('./components/ShowMeetsClub.vue').default);
 Vue.component('upload-files', require('./components/Upload.vue').default);
 Vue.component('upload-cover', require('./components/UploadCover.vue').default);
 Vue.component('destroy-avatar-club', require('./components/DestroyAvatarClub.vue').default);
-Vue.component('hello-component', require('./components/Hello.vue').default);
 Vue.component('show-club', require('./components/ShowClub.vue').default);
 Vue.component('register-user', require('./components/RegisterUser.vue').default);
 
@@ -107,7 +105,6 @@ var createClub = require('./components/CreateClub.vue');
 var Club = require('./components/ShowClub.vue');
 var settingClub = require('./components/SettingClub.vue');
 var Clubs = require('./components/ShowClubs.vue');
-var Hello = require('./components/Hello.vue');
 var Meet = require('./components/ShowMeet.vue');
 var firstPage = require('./components/FirstPage.vue');
 var registerUser = require('./components/RegisterUser.vue');
@@ -123,7 +120,6 @@ var router = new VueRouter({
     { path: '/club/:id/setting', name: 'settingClub', component: settingClub.default },
     { path: '/clubs', name: 'clubs', component: Clubs.default },
     { path: '/meet/:id', name: 'meet', component: Meet.default },
-    { path: '/hello', component: Hello.default },
     { path: '/firstPage', name: 'firstPage', component: firstPage.default },
     { path: '/registration', name: 'registerUser', component: registerUser.default },
     { path: '/user/:id', name: 'user', component: showUser.default },
@@ -131,23 +127,11 @@ var router = new VueRouter({
 })
 
 
-
   window.app3 = new Vue({
     el: '#app',
     router: router,
     apolloProvider,
     data: {
-        //message: 'Hello World!',
-        test: 'Ollo)',
-        meets: '',
-    },
-    // apollo: {
-    //     // Simple query that will update the 'hello' vue property
-    //     clubs: gql`query {
-    //         clubs{
-    //           name,
-    //           description
-    //         }
-    //       }`,
-    //   },
+
+    }
 });

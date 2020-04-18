@@ -157,12 +157,15 @@ export const CREATE_USER_MUTATION = gql`
 
 export const USER_QUERY = gql`
   # 7
-  query user($id: Int!) {
-    user(id: $id) {
+  query GetUser($id: ID!){
+    user(id: $id){
+      id,
       name,
       surname,
+      birthday,
       description,
-      birthday
+      avatar_src,
+      created_at
     }
   }
 `

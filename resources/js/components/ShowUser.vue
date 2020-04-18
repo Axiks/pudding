@@ -18,6 +18,7 @@
     </div>
 </template>
 <script>
+import gql from 'graphql-tag'
 import { USER_QUERY } from '../constants/graphql'
 
   export default {
@@ -25,19 +26,23 @@ import { USER_QUERY } from '../constants/graphql'
       data () {
         console.log(this.$route.params.id)
         return{
-            user: '',
-            id: this.$route.params.id
+            user: [],
         }
       },
       apollo: {
         // Simple query that will update the 'hello' vue property
-        user: {
-            query:  USER_QUERY,
-            variables: {
-                    id: '1'
-            }
+        user:{
+            query: USER_QUERY,
+      // Static parameters
+    
+    variables() {
+        return {
+            id: this.$route.params.id,
+        }
+    }
 
         }
+         
       }
   }
 </script>

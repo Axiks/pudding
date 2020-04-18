@@ -2,7 +2,7 @@
     <div class="container-fluid">
     <section class="row no-gutter align-items-center">
         <div class="col-12 text-center p-0 d-flex align-items-center">
-            <img :src="'/storage/default/default-cover.jpg'" class="img-fluid position-relative mx-auto" style="height: 100%; width: 100%;">
+            <img :src="'/storage/' + club.cover_src" class="img-fluid position-relative mx-auto" style="height: 100%; width: 100%;">
             <div class="dashboard w-100 position-absolute my-auto">
                         <h1>Biskvit</h1>
                         <h2>Знайди своє захоплення</h2>
@@ -19,16 +19,40 @@
             </div>
             <div class="posted_img">
                 <a href="" target="_blank" rel="noopener noreferrer">
-                    Опублікував <strong>Аніме Клуб</strong>
+                    Опублікував <strong>{{club.name}}</strong>
                 </a>
                 <a href="http://" target="_blank" rel="noopener noreferrer">
-                    <img :src="'/storage/default/default-avatar.jpg'" id="user_avatar" alt="User avatar">
+                    <img :src="'/storage/' + club.avatar_src" id="club_avatar" alt="Club avatar" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; ">
                 </a>
             </div>
         </div>
     </section>
     </div>
 </template>
+
+<script>
+import { CLUB_QUERY } from '../constants/graphql'
+
+  export default {
+      name: 'ClubQuery',
+      data () {
+        return{
+            club: [],
+            id: 1
+        }
+      },
+      apollo: {
+        club: {
+            query:  CLUB_QUERY,
+            variables() {
+                return {
+                    id: this.id,
+                }
+            }
+        }
+      }
+  }
+</script>
 
 <style scoped>
 html, body{
