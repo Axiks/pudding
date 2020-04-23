@@ -176,3 +176,34 @@ export const EMAIL_CHECK = gql`
     Check_email(email: $email)
   }
 `
+
+export const USER_LOGIN = gql`
+# 11
+mutation login($email: String!, $password: String!) {
+    login(
+      input: {
+      username: $email,
+      password: $password,
+      }
+    ) {
+      access_token
+      token_type
+    }
+}
+`
+
+export const ME_DATA_QUERY = gql`
+  # 12
+  query AllMeQuery {
+    me{
+      id,
+      name,
+      surname,
+      birthday,
+      description,
+      avatar_src,
+      created_at,
+      email
+    }
+  }
+`

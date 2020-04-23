@@ -1,14 +1,13 @@
 <template>
 <div class="">
     <!--0-->
-    {{Check_email}}
-    <div v-if="Check_email">Email використовується</div>
-    <div v-else>
-        не використовуються
-    </div>
+    <P>Email: {{email_users}}</P>
     <input type="email" v-model="email" id="signup_email" placeholder="Эл. почта">
     <p>Email is: {{ email }}</p>
-    <button @click="checkEmail">Увійти</button>
+    {{Check_email}}
+    <!-- <button @click="checkEmail">Увійти</button> -->
+    <password-component v-if="Check_email == 'true'" :email="email"></password-component>
+    <register-user v-if="Check_email == 'false'" :email="email"></register-user>
 </div>
 </template>
 <style scoped>
@@ -16,11 +15,14 @@
 <script>
 import gql from 'graphql-tag'
 import {  EMAIL_CHECK } from '../../constants/graphql'
+import LoginPassComponent from './PasswordLoginComponent.vue';
+import RegisterUserComponent from './RegisterUser';
 export default {
     data () {
         return{
             email: 'example@gmail.com',
-            Check_email: null,
+            Check_email: Boolean,
+            email_users: ''
         }
     },
     apollo: {
@@ -35,8 +37,21 @@ export default {
     },
     methods: {
         checkEmail: function(){
-            this.$apollo.queries.Check_email.refresh()
+            console.log('checkEmail work!')
+            //this.$apollo.queries.Check_email.refresh()
+            if(this.Check_email == "true") {
+                this.email_users = "використовується"
+                //Вхід компонент
+            }
+            else{
+                this.email_users = "НЕ використовується"
+                //Реєстрація компонент
+            }
         }
+    },
+    components:{
+        'password-component': LoginPassComponent,
+        'register-user': RegisterUserComponent
     }
 }
 </script>

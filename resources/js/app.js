@@ -30,7 +30,7 @@ Vue.component('upload-files', require('./components/Upload.vue').default);
 Vue.component('upload-cover', require('./components/UploadCover.vue').default);
 Vue.component('destroy-avatar-club', require('./components/DestroyAvatarClub.vue').default);
 Vue.component('show-club', require('./components/ShowClub.vue').default);
-Vue.component('register-user', require('./components/RegisterUser.vue').default);
+Vue.component('register-user', require('./components/firstPage/RegisterUser.vue').default);
 
 Vue.component('login-component', require('./components/firstPage/LoginComponent.vue').default);
 
@@ -42,12 +42,14 @@ Vue.component('login-component', require('./components/firstPage/LoginComponent.
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import { ApolloClient } from 'apollo-client'
+import ApolloClient from 'apollo-boost';
+// import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createUploadLink } from 'apollo-upload-client'
 import { ApolloLink } from 'apollo-link'
 import VueRouter from 'vue-router'
+
 
 // HTTP connection to the API
  const httpLink = createHttpLink({
@@ -70,6 +72,35 @@ const defaultOptions = {
   },
 }
 
+// const authLink = setContext((_, { headers }) => {
+//   // get the authentication token from local storage if it exists
+//   const token = localStorage.getItem('token');
+//   // return the headers to the context so httpLink can read them
+//   return {
+//     headers: {
+//       ContentType: 'application/json',
+//       authorization: token ? `Bearer ${token}` : "",
+//     }
+//   }
+// });
+
+
+const client = new ApolloClient({
+  uri: "/graphql",
+  request: (operation) => {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    operation.setContext({
+      headers: {
+        'authorization': token ? `Bearer ${token}` : '',
+        'Content-Type': "application/json"
+      }
+    });
+  },
+  cache,
+  defaultOptions: defaultOptions,
+});
+
 // Create the apollo client
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([
@@ -91,7 +122,7 @@ import gql from 'graphql-tag';
 Vue.use(VueApollo)
 
 const apolloProvider = new VueApollo({
-    defaultClient: apolloClient,
+    defaultClient: client,
   })
 
 
@@ -109,9 +140,11 @@ var settingClub = require('./components/SettingClub.vue');
 var Clubs = require('./components/ShowClubs.vue');
 var Meet = require('./components/ShowMeet.vue');
 var firstPage = require('./components/FirstPage.vue');
-var registerUser = require('./components/RegisterUser.vue');
+var registerUser = require('./components/firstPage/RegisterUser.vue');
 var showUser = require('./components/ShowUser.vue');
 var loginPage = require('./components/firstPage/LoginPageBoxComponent.vue');
+var showMe = require('./components/ShowMe.vue');
+
 
 
 var router = new VueRouter({
@@ -127,6 +160,7 @@ var router = new VueRouter({
     { path: '/registration', name: 'registerUser', component: registerUser.default },
     { path: '/user/:id', name: 'user', component: showUser.default },
     { path: '/login', name: 'login', component: loginPage.default },
+    { path: '/me', name: 'me', component: showMe.default },
   ]
 })
 

@@ -32,17 +32,17 @@
 </template>
 
 <script>
-  import { CREATE_USER_MUTATION } from '../constants/graphql'
+  import { CREATE_USER_MUTATION } from '../../constants/graphql'
   export default {
-    name: 'CreateUser',
+    props: {email: String},
     data () {
       return {
         name: '',
         surname: '',
-        email: '',
+        email: this.email,
         password: '',
         password_confirmation: '',
-        birthday: '1992-08-24'
+        birthday: '1990-08-24'
       }
     },
     methods: {
