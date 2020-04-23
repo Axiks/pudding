@@ -12,16 +12,18 @@
                             <span>Реєстрація</span>
                         </button>
                     </a>
+                    <a href="/#/login">
                         <button id="login">
                             <span>Вхід</span>
                         </button>
+                    </a>
                 </div>
             </div>
             <div class="posted_img">
-                <a href="" target="_blank" rel="noopener noreferrer">
+                <a v-bind:href="'#/club/'+id" target="_blank" :rel="club.name">
                     Опублікував <strong>{{club.name}}</strong>
                 </a>
-                <a href="http://" target="_blank" rel="noopener noreferrer">
+                <a v-bind:href="'#/club/'+id" target="_blank" :rel="club.name">
                     <img :src="'/storage/' + club.avatar_src" id="club_avatar" alt="Club avatar" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; ">
                 </a>
             </div>
@@ -38,7 +40,8 @@ import { CLUB_QUERY } from '../constants/graphql'
       data () {
         return{
             club: [],
-            id: 1
+            // id: Math.floor(Math.random() * 16 + 1)
+            id: 16
         }
       },
       apollo: {

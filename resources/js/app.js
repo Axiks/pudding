@@ -32,6 +32,8 @@ Vue.component('destroy-avatar-club', require('./components/DestroyAvatarClub.vue
 Vue.component('show-club', require('./components/ShowClub.vue').default);
 Vue.component('register-user', require('./components/RegisterUser.vue').default);
 
+Vue.component('login-component', require('./components/firstPage/LoginComponent.vue').default);
+
 
 
 /**
@@ -109,6 +111,7 @@ var Meet = require('./components/ShowMeet.vue');
 var firstPage = require('./components/FirstPage.vue');
 var registerUser = require('./components/RegisterUser.vue');
 var showUser = require('./components/ShowUser.vue');
+var loginPage = require('./components/firstPage/LoginPageBoxComponent.vue');
 
 
 var router = new VueRouter({
@@ -123,6 +126,7 @@ var router = new VueRouter({
     { path: '/firstPage', name: 'firstPage', component: firstPage.default },
     { path: '/registration', name: 'registerUser', component: registerUser.default },
     { path: '/user/:id', name: 'user', component: showUser.default },
+    { path: '/login', name: 'login', component: loginPage.default },
   ]
 })
 
@@ -132,6 +136,5 @@ var router = new VueRouter({
     router: router,
     apolloProvider,
     data: {
-
     }
 });

@@ -8,7 +8,7 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
 
 type Query {
-    hello: String!
+    hello: Boolean!
     greet(name: String!): String
     users: [User!]! @paginate(type: "paginator" model: "App\\User")
     user(id: ID @eq): User @find(model: "App\\User")
@@ -20,6 +20,7 @@ type Query {
     hobby_lists: [Hobby_list!]! @all
     hobby_tags: [Hobby_tag!]! @all
     me: User @middleware(checks:["auth:api"]) @auth
+    Check_email(email: String!): String! @field(resolver: "App\\GraphQL\\Queries\\Check_email@resolve")
 }
 
 type Mutation {

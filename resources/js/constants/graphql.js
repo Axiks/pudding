@@ -135,7 +135,7 @@ export const MEET_QUERY = gql`
 `
 
 export const CREATE_USER_MUTATION = gql`
-  # 7
+  # 8
   mutation register($name: String!, $surname: String!, $email: String!, $password: String!, $password_confirmation: String!, $birthday: String!) {
       register(
         input: {
@@ -156,7 +156,7 @@ export const CREATE_USER_MUTATION = gql`
 `
 
 export const USER_QUERY = gql`
-  # 7
+  # 9
   query GetUser($id: ID!){
     user(id: $id){
       id,
@@ -167,5 +167,12 @@ export const USER_QUERY = gql`
       avatar_src,
       created_at
     }
+  }
+`
+
+export const EMAIL_CHECK = gql`
+  # 10
+  query EmailCheck($email: String!){
+    Check_email(email: $email)
   }
 `
