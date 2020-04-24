@@ -8,12 +8,12 @@
             </div>
             <div class="row" style= "padding-top: 50px;">
                 <div class="shadow-sm col block mt-3">
+                    <img :src="'/storage/' + me.avatar_src" style="height: 200px; width: 200px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff;">
                     <h3>Опис</h3>
                     <h6>{{me.description}}</h6>
                     {{me}}
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -37,8 +37,8 @@ import { ME_DATA_QUERY } from '../constants/graphql'
     variables() {
         return {
             
+            }
         }
-    }
 
         }
          

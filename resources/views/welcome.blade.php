@@ -69,26 +69,7 @@
     <body>
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Biskvit</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <router-link to="/clubs" class="nav-link">Усі клуби</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/club/create" class="nav-link">Створити Клуб</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/firstPage" class="nav-link">Початкова сторінка</router-link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-            <router-view></router-view>
+            <index-page></index-page>
         </div>
         <script src="{{ URL::asset('js/app.js') }}"></script>
     </body>

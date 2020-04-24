@@ -21,6 +21,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+Vue.component('index-page', require('./components/index.vue').default);
 Vue.component('first-page', require('./components/FirstPage.vue').default);
 Vue.component('create-club', require('./components/CreateClub.vue').default);
 Vue.component('create-meet', require('./components/CreateMeet.vue').default);
@@ -31,6 +32,7 @@ Vue.component('upload-cover', require('./components/UploadCover.vue').default);
 Vue.component('destroy-avatar-club', require('./components/DestroyAvatarClub.vue').default);
 Vue.component('show-club', require('./components/ShowClub.vue').default);
 Vue.component('register-user', require('./components/firstPage/RegisterUser.vue').default);
+Vue.component('head-component', require('./components/Header.vue').default);
 
 Vue.component('login-component', require('./components/firstPage/LoginComponent.vue').default);
 
@@ -133,6 +135,7 @@ window.VueRouter = require('vue-router');
 
 Vue.use(VueRouter);
 
+var index = require('./components/index.vue');
 var uploadAvatarClub = require('./components/Upload.vue');
 var createClub = require('./components/CreateClub.vue');
 var Club = require('./components/ShowClub.vue');
@@ -144,12 +147,15 @@ var registerUser = require('./components/firstPage/RegisterUser.vue');
 var showUser = require('./components/ShowUser.vue');
 var loginPage = require('./components/firstPage/LoginPageBoxComponent.vue');
 var showMe = require('./components/ShowMe.vue');
+var error404 = require('./components/404.vue');
 
 
 
 var router = new VueRouter({
   // mode: 'history',
   routes: [
+    { path: '/', name: 'clubs', component: Clubs.default },
+    { path: '/index', name: 'index', component: index.default },
     { path: '/club/create', name: 'clubCreate', component: createClub.default },
     { path: '/club/:id/avatarUpload', name: 'clubAvatarUpload', component: uploadAvatarClub.default },
     { path: '/club/:id', name: 'club', component: Club.default }, // /about => About.vue
@@ -161,6 +167,7 @@ var router = new VueRouter({
     { path: '/user/:id', name: 'user', component: showUser.default },
     { path: '/login', name: 'login', component: loginPage.default },
     { path: '/me', name: 'me', component: showMe.default },
+    { path: '*', name: 'error404', component: error404.default },
   ]
 })
 

@@ -31,6 +31,10 @@ type Mutation {
         id: ID!
         file: Upload!
     ): String
+    uploadAvatarUser(
+        id: ID!
+        file: Upload!
+    ): String
     uploadCoverClub(
         id: ID!
         file: Upload!

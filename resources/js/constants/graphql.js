@@ -203,7 +203,18 @@ export const ME_DATA_QUERY = gql`
       description,
       avatar_src,
       created_at,
-      email
+      email,
+      avatar_src
     }
+  }
+`
+
+export const UPLOAD_USER_MUTATION = gql`
+  #13
+  mutation ($file: Upload!, $id: ID!) {
+    uploadAvatarUser(
+      file: $file,
+      id: $id
+    )
   }
 `
