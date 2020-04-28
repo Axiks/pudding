@@ -6,12 +6,10 @@
 </template>
 
 <script>
-  import { UPLOAD_FILES_MUTATION } from '../constants/graphql'
+  import { UPLOAD_USER_AVATAR_MUTATION } from '../../constants/graphql'
   export default {
-    props: ['id'],
     data () {
       return {
-        files: null,
       }
     },
     methods: {
@@ -20,14 +18,12 @@
         if (!files.length) {
           return
         }
-        this.files = files[0]
 
         this.$apollo
           .mutate({
-            mutation: UPLOAD_FILES_MUTATION,
+            mutation: UPLOAD_USER_AVATAR_MUTATION,
             variables: {
-              file: files[0],
-              id: this.id,
+              file: files[0]
             },
             context: {
               hasUpload: true

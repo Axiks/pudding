@@ -32,9 +32,8 @@ type Mutation {
         file: Upload!
     ): String
     uploadAvatarUser(
-        id: ID!
         file: Upload!
-    ): String
+    ): String  @middleware(checks:["auth:api"])
     uploadCoverClub(
         id: ID!
         file: Upload!

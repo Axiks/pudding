@@ -23,47 +23,44 @@ class UploadAvatarUser
      */
     public function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $id = null;
         $file = $args['file'];
 
-        // if (!Auth::check()) {
-        //     return Auth::id();
-        // }
+        if (!Auth::check()) {
+            return "User don't Auth";
+        }
 
-        return Auth::check();
+        try {
+            $fileSrc = $file->storePublicly('uploads');//SAVE
+            Storage::put('uploads', $file);
+        }catch (ModelNotFoundException $exception) {
+            return $exception->getMessage();
+        }
+        try {
+            $files = new File;
+            $files->name = $file->getClientOriginalName();
+            $files->type = $file->getMimeType();
+            $files->src = $fileSrc;
+            $files->size = $file->getSize();
+            $files->upload_user = 1;
+            $files->save(); 
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
 
-        // try {
-        //     $fileSrc = $file->storePublicly('uploads');//SAVE
-        //     Storage::put('uploads', $file);
-        // }catch (ModelNotFoundException $exception) {
-        //     return $exception->getMessage();
-        // }
-        // try {
-        //     $files = new File;
-        //     $files->name = $file->getClientOriginalName();
-        //     $files->type = $file->getMimeType();
-        //     $files->src = $fileSrc;
-        //     $files->size = $file->getSize();
-        //     $files->upload_user = 1;
-        //     $files->save(); 
-        // } catch (Exception $e) {
-        //     return $e->getMessage();
-        // }
+        try {
+            $user = User::find(Auth::id());
+            if($user){
+                $user->avatar_src = $files->src;
+                $user->save();
+                echo($files->src);//
+            }
+            else{
+                return "User ID not found";
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
 
-        // try {
-        //     $user = User::find(Auth::id());
-        //     if($user){
-        //         $user->avatar_src = $files->src;
-        //         $user->save();
-        //         echo($files->src);//
-        //     }
-        //     else{
-        //         return "User ID not found";
-        //     }
-        // } catch (Exception $e) {
-        //     return $e->getMessage();
-        // }
-
-        //return "success";
+        return "success";
     }
 }

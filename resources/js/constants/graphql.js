@@ -209,12 +209,11 @@ export const ME_DATA_QUERY = gql`
   }
 `
 
-export const UPLOAD_USER_MUTATION = gql`
+export const UPLOAD_USER_AVATAR_MUTATION = gql`
   #13
-  mutation ($file: Upload!, $id: ID!) {
+  mutation ($file: Upload!) {
     uploadAvatarUser(
-      file: $file,
-      id: $id
+      file: $file
     )
   }
 `

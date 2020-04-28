@@ -44,77 +44,50 @@ Vue.component('login-component', require('./components/firstPage/LoginComponent.
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import ApolloClient from 'apollo-boost';
-// import { ApolloClient } from 'apollo-client'
-import { createHttpLink } from 'apollo-link-http'
+//import ApolloClient from 'apollo-boost';
+ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createUploadLink } from 'apollo-upload-client'
 import { ApolloLink } from 'apollo-link'
 import VueRouter from 'vue-router'
+import { BatchHttpLink } from "apollo-link-batch-http";
 
-
-// HTTP connection to the API
- const httpLink = createHttpLink({
-   // You should use an absolute URL here
-   //uri: 'http://127.0.0.1:8000/graphql',
-   uri: 'http://192.168.31.202//graphql',
- })
 
 // Cache implementation
 const cache = new InMemoryCache()
 
 const defaultOptions = {
-  watchQuery: {
-    fetchPolicy: 'no-cache',
-    errorPolicy: 'ignore',
-  },
-  query: {
-    fetchPolicy: 'no-cache',
-    errorPolicy: 'all',
-  },
+ watchQuery: {
+   fetchPolicy: 'no-cache',
+   errorPolicy: 'ignore',
+ },
+ query: {
+   fetchPolicy: 'no-cache',
+   errorPolicy: 'all',
+ },
 }
 
-// const authLink = setContext((_, { headers }) => {
-//   // get the authentication token from local storage if it exists
-//   const token = localStorage.getItem('token');
-//   // return the headers to the context so httpLink can read them
-//   return {
-//     headers: {
-//       ContentType: 'application/json',
-//       authorization: token ? `Bearer ${token}` : "",
-//     }
-//   }
-// });
+const token = localStorage.getItem('token');
+const httpOptions = {
+  uri: '/graphql',
+  headers: {
+    'authorization': token ? `Bearer ${token}` : ''
+  }
+}
 
-
-const client = new ApolloClient({
-  uri: "/graphql",
-  request: (operation) => {
-    const token = localStorage.getItem('token');
-    console.log(token)
-    operation.setContext({
-      headers: {
-        'authorization': token ? `Bearer ${token}` : '',
-        'Content-Type': "application/json"
-      }
-    });
-  },
-  cache,
-  defaultOptions: defaultOptions,
-});
+const httpLink = ApolloLink.split(
+  operation => operation.getContext().hasUpload,
+  createUploadLink(httpOptions),
+  new BatchHttpLink(httpOptions)
+)
 
 // Create the apollo client
 const apolloClient = new ApolloClient({
-  link: ApolloLink.from([
-    // ...
-    createUploadLink({
-      //uri: 'http://127.0.0.1:8000/graphql'
-      uri: '/graphql'
-      //uri: 'http://192.168.31.202/graphql',
-    })
-  ]),
-  cache,
-  defaultOptions: defaultOptions,
+ link: ApolloLink.from([
+  httpLink
+ ]),
+ cache,
+ defaultOptions: defaultOptions,
 })
 
 import Vue from 'vue'
@@ -124,8 +97,8 @@ import gql from 'graphql-tag';
 Vue.use(VueApollo)
 
 const apolloProvider = new VueApollo({
-    defaultClient: client,
-  })
+   defaultClient: apolloClient,
+ })
 
 
 /**
@@ -147,6 +120,7 @@ var registerUser = require('./components/firstPage/RegisterUser.vue');
 var showUser = require('./components/ShowUser.vue');
 var loginPage = require('./components/firstPage/LoginPageBoxComponent.vue');
 var showMe = require('./components/ShowMe.vue');
+var settingMe = require('./components/user/SettingUser.vue');
 var error404 = require('./components/404.vue');
 
 
@@ -166,7 +140,8 @@ var router = new VueRouter({
     { path: '/registration', name: 'registerUser', component: registerUser.default },
     { path: '/user/:id', name: 'user', component: showUser.default },
     { path: '/login', name: 'login', component: loginPage.default },
-    { path: '/me', name: 'me', component: showMe.default },
+    { path: '/me', name: 'me', component: showMe.default},
+    { path: '/setting', name: 'setting', component: settingMe.default},
     { path: '*', name: 'error404', component: error404.default },
   ]
 })
