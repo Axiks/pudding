@@ -7,6 +7,7 @@
 </div>
 </template>
 <script>
+import VueRouter from 'vue-router'
 import gql from 'graphql-tag'
 import {  USER_LOGIN } from '../../constants/graphql'
 export default {
@@ -37,6 +38,7 @@ export default {
             this.token_type = data.data.login.token_type
             this.access_token = data.data.login.access_token
             localStorage.setItem('token',  data.data.login.access_token)
+            this.$router.push("me")
             //console.log('LocalToken: '+ localStorage.getItem('token'))
         })
         .catch((error) => {

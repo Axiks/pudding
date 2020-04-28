@@ -30,14 +30,14 @@ type Mutation {
     uploadAvatarClub(
         id: ID!
         file: Upload!
-    ): String
+    ): String @middleware(checks:["auth:api"])
     uploadAvatarUser(
         file: Upload!
     ): String  @middleware(checks:["auth:api"])
     uploadCoverClub(
         id: ID!
         file: Upload!
-    ): String
+    ): String @middleware(checks:["auth:api"])
     destroyAvatarClub(
         id: ID!
     ): String

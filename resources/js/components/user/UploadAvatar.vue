@@ -14,7 +14,6 @@
     },
     methods: {
       upload ({ target: { files = [] } }) {
-        console.log(this.id);
         if (!files.length) {
           return
         }

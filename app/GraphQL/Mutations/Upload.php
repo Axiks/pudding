@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use Illuminate\Support\Facades\Auth;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +25,10 @@ class Upload
     {
         //$id = $args['id'];
         //$entity = $args['entity'];
+        if (!Auth::check()) {
+            return "User don't Auth";
+        }
+
         $file = $args['file'];
         try {
             $fileSrc = $file->storePublicly('uploads');//SAVE
@@ -36,7 +41,7 @@ class Upload
         $files->type = $file->getMimeType();
         $files->src = $fileSrc;
         $files->size = $file->getSize();
-        $files->upload_user = 1;
+        $files->upload_user = Auth::id();
         $files->save();
 
         return $files->id;

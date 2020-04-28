@@ -41,7 +41,7 @@ class UploadAvatarUser
             $files->type = $file->getMimeType();
             $files->src = $fileSrc;
             $files->size = $file->getSize();
-            $files->upload_user = 1;
+            $files->upload_user = Auth::id();
             $files->save(); 
         } catch (Exception $e) {
             return $e->getMessage();
@@ -52,7 +52,8 @@ class UploadAvatarUser
             if($user){
                 $user->avatar_src = $files->src;
                 $user->save();
-                echo($files->src);//
+                //echo($files->src);//
+                return('success');
             }
             else{
                 return "User ID not found";

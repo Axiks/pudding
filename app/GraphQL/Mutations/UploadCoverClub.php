@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use Illuminate\Support\Facades\Auth;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +25,11 @@ class UploadCoverClub
     {
         $id = $args['id'];
         $file = $args['file'];
+
+        if (!Auth::check()) {
+            return "User don't Auth";
+        }
+        
         try {
             $fileSrc = $file->storePublicly('uploads');//SAVE
         }catch (ModelNotFoundException $exception) {
@@ -35,7 +41,7 @@ class UploadCoverClub
             $files->type = $file->getMimeType();
             $files->src = $fileSrc;
             $files->size = $file->getSize();
-            $files->upload_user = 1;
+            $files->upload_user = Auth::id();
             $files->save(); 
         } catch (Exception $e) {
             return $e->getMessage();

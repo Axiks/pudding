@@ -18,7 +18,10 @@
                 </ul>
             </div>
             <div v-if="me">
-              <router-link to="/me" class="nav-link"><b>{{me.name}}</b></router-link>
+              <router-link to="/me" class="nav-link">
+                <img v-if="me.avatar_src" :src="'/storage/' + me.avatar_src" style="height: 45px; width: 45px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff;">
+                <b>{{me.name}}</b>
+              </router-link>
             </div>
             <div v-else>
               <router-link to="/login" class="nav-link">Увійти</router-link>

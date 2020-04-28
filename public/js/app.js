@@ -11362,6 +11362,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
  //console.log(Vue.http.headers);
 
@@ -11600,6 +11603,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/graphql */ "./resources/js/constants/graphql.js");
+//
 //
 //
 //
@@ -11987,9 +11991,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/graphql */ "./resources/js/constants/graphql.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/graphql */ "./resources/js/constants/graphql.js");
 //
 //
 //
@@ -11998,6 +12003,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12022,7 +12028,7 @@ __webpack_require__.r(__webpack_exports__);
           email = _this$$data.email,
           password = _this$$data.password;
       this.$apollo.mutate({
-        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_1__["USER_LOGIN"],
+        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_2__["USER_LOGIN"],
         variables: {
           email: email,
           password: password
@@ -12032,7 +12038,10 @@ __webpack_require__.r(__webpack_exports__);
         console.log(data.data.login);
         _this.token_type = data.data.login.token_type;
         _this.access_token = data.data.login.access_token;
-        localStorage.setItem('token', data.data.login.access_token); //console.log('LocalToken: '+ localStorage.getItem('token'))
+        localStorage.setItem('token', data.data.login.access_token);
+
+        _this.$router.push("me"); //console.log('LocalToken: '+ localStorage.getItem('token'))
+
       })["catch"](function (error) {
         // This should log the error object but is just printing out the message
         console.log(error);
@@ -12239,7 +12248,6 @@ __webpack_require__.r(__webpack_exports__);
     upload: function upload(_ref) {
       var _ref$target$files = _ref.target.files,
           files = _ref$target$files === void 0 ? [] : _ref$target$files;
-      console.log(this.id);
 
       if (!files.length) {
         return;
@@ -56452,7 +56460,22 @@ var render = function() {
               _c(
                 "router-link",
                 { staticClass: "nav-link", attrs: { to: "/me" } },
-                [_c("b", [_vm._v(_vm._s(_vm.me.name))])]
+                [
+                  _vm.me.avatar_src
+                    ? _c("img", {
+                        staticStyle: {
+                          height: "45px",
+                          width: "45px",
+                          "border-radius": "50%",
+                          "object-fit": "cover",
+                          border: "3px solid #ffffff"
+                        },
+                        attrs: { src: "/storage/" + _vm.me.avatar_src }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("b", [_vm._v(_vm._s(_vm.me.name))])
+                ]
               )
             ],
             1
@@ -56814,23 +56837,35 @@ var render = function() {
         "div",
         { staticClass: "row", staticStyle: { "padding-top": "50px" } },
         [
-          _c("div", { staticClass: "shadow-sm col block mt-3" }, [
-            _c("img", {
-              staticStyle: {
-                height: "200px",
-                width: "200px",
-                "border-radius": "50%",
-                "object-fit": "cover",
-                border: "3px solid #ffffff"
-              },
-              attrs: { src: "/storage/" + _vm.me.avatar_src }
-            }),
-            _vm._v(" "),
-            _c("h3", [_vm._v("Опис")]),
-            _vm._v(" "),
-            _c("h6", [_vm._v(_vm._s(_vm.me.description))]),
-            _vm._v("\n                " + _vm._s(_vm.me) + "\n            ")
-          ])
+          _c(
+            "div",
+            { staticClass: "shadow-sm col block mt-3" },
+            [
+              _c("img", {
+                staticStyle: {
+                  height: "200px",
+                  width: "200px",
+                  "border-radius": "50%",
+                  "object-fit": "cover",
+                  border: "3px solid #ffffff"
+                },
+                attrs: { src: "/storage/" + _vm.me.avatar_src }
+              }),
+              _vm._v(" "),
+              _c("h3", [_vm._v("Опис")]),
+              _vm._v(" "),
+              _c("h6", [_vm._v(_vm._s(_vm.me.description))]),
+              _vm._v(
+                "\n                " + _vm._s(_vm.me) + "\n                "
+              ),
+              _c(
+                "router-link",
+                { attrs: { id: "setting", to: { name: "setting" } } },
+                [_vm._v("Налаштування")]
+              )
+            ],
+            1
+          )
         ]
       )
     ])

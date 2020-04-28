@@ -12,6 +12,7 @@
                     <h3>Опис</h3>
                     <h6>{{me.description}}</h6>
                     {{me}}
+                    <router-link id="setting" :to="{ name: 'setting' }">Налаштування</router-link>
                 </div>
             </div>
         </div>
