@@ -19,6 +19,7 @@ type User {
     avatar_src: String
     email: String!
     created_at: DateTime!
+    clubs: [Club!]! @hasMany
     meets: [Meet!]! @hasMany
     hobbies: [Hobby_list!]! @hasMany
 }
