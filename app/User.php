@@ -50,4 +50,29 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Hobby_list', 'user_hobby', 'user_id', 'hobby_list_id');
     }
 
+    /**
+     * Meet, принадлежащие пользователю.
+    */
+    public function my_meets()
+    {
+        return $this->belongsToMany('App\Meet', 'user_meet', 'user_id', 'meet_id');
+    }
+
+    /**
+     * Clubs, принадлежащие пользователю.
+    */
+    public function clubs()
+    {
+        return $this->belongsToMany('App\Club', 'user_club', 'user_id', 'club_id');
+    }
+
+    /**
+     * Hobby, принадлежащие пользователю.
+    */
+    public function hobbyes()
+    {
+        return $this->belongsToMany('App\Hobby_list', 'user_hobby', 'user_id', 'hobby_list_id');
+    }
+    
+
 }

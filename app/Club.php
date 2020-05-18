@@ -24,4 +24,28 @@ class Club extends Model
     public function choto(){
         return ("Test string");
     }
+
+    /**
+     * Clubs, принадлежащие пользователю.
+    */
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'user_club', 'club_id', 'user_id');
+    }
+
+    /**
+     * Хобби, принадлежащие клубу.
+    */
+    public function clubs()
+    {
+        return $this->belongsToMany('App\Hobby_list', 'club_hobby', 'club_id', 'hobby_id');
+    }
+
+    /**
+     * Клуб, принадлежащие хобби.
+    */
+    public function hobbyes()
+    {
+        return $this->belongsToMany('App\Hobby_list', 'club_hobby', 'club_id', 'hobby_id');
+    }
 }

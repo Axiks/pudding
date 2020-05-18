@@ -8,8 +8,7 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
 
 type Query {
-    hello: Boolean!
-    greet(name: String!): String
+    me: User @middleware(checks:["auth:api"]) @auth
     users: [User!]! @paginate(type: "paginator" model: "App\\User")
     user(id: ID @eq): User @find(model: "App\\User")
     meets: [Meet!]! @all
@@ -19,28 +18,46 @@ type Query {
     hobby_groups: [Hobby_group!]! @all
     hobby_lists: [Hobby_list!]! @all
     hobby_tags: [Hobby_tag!]! @all
-    me: User @middleware(checks:["auth:api"]) @auth
     Check_email(email: String!): String! @field(resolver: "App\\GraphQL\\Queries\\Check_email@resolve")
+    hello: Boolean!
+    greet(name: String!): String
 }
 
 type Mutation {
-    upload(
-        file: Upload!
-    ): ID!
-    uploadAvatarClub(
-        id: ID!
-        file: Upload!
+    updateMe(
+        name: String
+        surname: String
+        description: String
+        birthday: String
+        link: String
+        languages: String
+    ): User @field(resolver: "App\\GraphQL\\Mutations\\UpdateUser@resolve") @middleware(checks:["auth:api"])
+
+    addUserHobby(
+        hobby_list_id: ID!
+    ): String @middleware(checks:["auth:api"])
+    deleteUserHobby(
+        hobby_list_id: ID!
+    ): String @middleware(checks:["auth:api"])
+    addUserClub(
+        club_id: ID!
+    ): String @field(resolver: "App\\GraphQL\\Mutations\\AddUserClub@resolve") @middleware(checks:["auth:api"])
+    deleteUserClub(
+        club_id: ID!
+    ): String @middleware(checks:["auth:api"])
+    addUserMeet(
+        meet_id: ID!
+    ): String @field(resolver: "App\\GraphQL\\Mutations\\AddUserMeet@resolve") @middleware(checks:["auth:api"])
+    deleteUserMeet(
+        meet_id: ID!
+    ): String @middleware(checks:["auth:api"])
+    destroyUserHobby(
+        hobby_list_id: ID!
     ): String @middleware(checks:["auth:api"])
     uploadAvatarUser(
         file: Upload!
     ): String  @middleware(checks:["auth:api"])
-    uploadCoverClub(
-        id: ID!
-        file: Upload!
-    ): String @middleware(checks:["auth:api"])
-    destroyAvatarClub(
-        id: ID!
-    ): String
+    destroyAvatarUser: String  @middleware(checks:["auth:api"])
     createClub(
         name: String!
         description: String!
@@ -48,15 +65,35 @@ type Mutation {
         creator_id: String!
     ): Club @create(model: "App\\Club")
     updateClub(
-        name: String!
-        description: String!
-        avatar_src: String
-        background_src: String
+        id: ID!
+        name: String
+        description: String
     ): Club @update(model: "App\\Club")
     deleteClub(
         id: ID!
     ):  Club @delete(model: "App\\Club")
-    
+     upload(
+        file: Upload!
+    ): ID!
+    uploadAvatarClub(
+        id: ID!
+        file: Upload!
+    ): String @middleware(checks:["auth:api"])
+    uploadCoverClub(
+        id: ID!
+        file: Upload!
+    ): String @middleware(checks:["auth:api"])
+    destroyAvatarClub(
+        id: ID!
+    ): String
+    addClubHobby(
+        club_id: ID!
+        hobby_list_id: ID!
+    ): String @middleware(checks:["auth:api"])
+    deleteClubHobby(
+        club_id: ID!
+        hobby_list_id: ID!
+    ): String @middleware(checks:["auth:api"])
     createMeet(
         title: String!
         description: String!
@@ -67,14 +104,15 @@ type Mutation {
         user_id: String!
     ): Meet @create(model: "App\\Meet")
     updateMeet(
-        title: String!
-        description: String!
-        beginning_date: DateTime!
-        end_date: DateTime!
-        map_point: String!
+        id: ID!
+        title: String
+        description: String
+        beginning_date: DateTime
+        end_date: DateTime
+        map_point: String
     ): Meet @update(model: "App\\Meet")
     deleteMeet(
-        id: ID
+        id: ID!
     ): User @delete(model: "App\\Meet")
 }
 
@@ -87,6 +125,8 @@ type Club {
     choto: String
     meets: [Meet!]! @hasMany
     creator: User! @belongsTo
+    hobbyes: [Hobby_list!]! @hasMany
+    users: [User!]! @hasMany
 }
 
 type Meet {
@@ -100,6 +140,7 @@ type Meet {
     map_point: String!
     user: User! @belongsTo
     club: Club! @belongsTo
+    users: [User!]! @hasMany
 }
 
 type File {

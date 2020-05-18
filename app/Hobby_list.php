@@ -33,4 +33,12 @@ class Hobby_list extends Model
     {
         return $this->belongsToMany('App\User', 'user_hobby', 'hobby_list_id', 'user_id');
     }
+
+    /**
+     * Хобби, принадлежащие клубам.
+    */
+    public function clubs()
+    {
+        return $this->belongsToMany('App\Club', 'club_hobby', 'hobby_id', 'club_id');
+    }
 }

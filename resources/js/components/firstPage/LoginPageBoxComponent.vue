@@ -1,13 +1,17 @@
 <template>
-<div class="">
-    <h1>Site name</h1>
-    <title>Знайди своє захоплення</title>
+<div class="login-box">
         <!--Block component-->
         <login-component></login-component>
 </div>
 </template>
-<style scoped>
-
+<style>
+    .login-box{
+        background-color: white;
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+    }
 </style>
 
 <script>

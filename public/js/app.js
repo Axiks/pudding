@@ -11264,6 +11264,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/graphql */ "./resources/js/constants/graphql.js");
+/* harmony import */ var _firstPage_LoginPageBoxComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./firstPage/LoginPageBoxComponent.vue */ "./resources/js/components/firstPage/LoginPageBoxComponent.vue");
+//
+//
 //
 //
 //
@@ -11299,13 +11302,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ClubQuery',
   data: function data() {
     return {
       club: [],
       // id: Math.floor(Math.random() * 16 + 1)
-      id: 16
+      id: 16,
+      loginSwitch: false
     };
   },
   apollo: {
@@ -11317,6 +11322,14 @@ __webpack_require__.r(__webpack_exports__);
         };
       }
     }
+  },
+  methods: {
+    loginFunc: function loginFunc() {
+      this.loginSwitch = true;
+    }
+  },
+  components: {
+    'login-box-component': _firstPage_LoginPageBoxComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -11915,7 +11928,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -11978,6 +11990,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -11995,6 +12011,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/graphql */ "./resources/js/constants/graphql.js");
+//
 //
 //
 //
@@ -16907,6 +16924,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n#name[data-v-50f5d45a]{\n    position: absolute;\n    font-size: 24px;\n    left: 200px;\n    top: 5px;\n}\n#setting[data-v-50f5d45a]{\n    position: absolute;\n    top: -30px;\n    right: 0px;\n}\n.block[data-v-50f5d45a]{\n    border-radius: 0.8rem;\n    border: 1px solid rgba(0, 0, 0, 0.125);\n    padding: 1rem 2rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.login-box{\n    background-color: white;\n    width: 300px;\n    margin: 0 auto;\n    padding: 20px;\n    border-radius: 5px;\n}\n", ""]);
 
 // exports
 
@@ -52900,6 +52936,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -56292,7 +56358,39 @@ var render = function() {
             attrs: { src: "/storage/" + _vm.club.cover_src }
           }),
           _vm._v(" "),
-          _vm._m(0),
+          _c(
+            "div",
+            { staticClass: "dashboard w-100 position-absolute my-auto" },
+            [
+              _c("h1", [_vm._v("Biskvit")]),
+              _vm._v(" "),
+              _c("h2", [_vm._v("Знайди своє захоплення")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {},
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      attrs: { id: "login" },
+                      on: {
+                        click: function($event) {
+                          return _vm.loginFunc()
+                        }
+                      }
+                    },
+                    [_vm._v("Вхід")]
+                  ),
+                  _vm._v(" "),
+                  _vm.loginSwitch ? _c("login-box-component") : _vm._e()
+                ],
+                1
+              )
+            ]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "posted_img" }, [
             _c(
@@ -56347,29 +56445,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
-      { staticClass: "dashboard w-100 position-absolute my-auto" },
+      "a",
+      { attrs: { href: "/#/registration", rel: "noopener noreferrer" } },
       [
-        _c("h1", [_vm._v("Biskvit")]),
-        _vm._v(" "),
-        _c("h2", [_vm._v("Знайди своє захоплення")]),
-        _vm._v(" "),
-        _c("div", {}, [
-          _c(
-            "a",
-            { attrs: { href: "/#/registration", rel: "noopener noreferrer" } },
-            [
-              _c("button", { attrs: { id: "registration" } }, [
-                _c("span", [_vm._v("Реєстрація")])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "/#/login" } }, [
-            _c("button", { attrs: { id: "login" } }, [
-              _c("span", [_vm._v("Вхід")])
-            ])
-          ])
+        _c("button", { attrs: { id: "registration" } }, [
+          _c("span", [_vm._v("Реєстрація")])
         ])
       ]
     )
@@ -57153,9 +57233,6 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("p", [_vm._v("Email is: " + _vm._s(_vm.email))]),
-      _vm._v("\r\n    " + _vm._s(_vm.Check_email) + "\r\n    "),
-      _vm._v(" "),
       _vm.Check_email == "true"
         ? _c("password-component", { attrs: { email: _vm.email } })
         : _vm._e(),
@@ -57174,10 +57251,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&scoped=true&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -57189,18 +57266,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {},
-    [
-      _c("h1", [_vm._v("Site name")]),
-      _vm._v(" "),
-      _c("title", [_vm._v("Знайди своє захоплення")]),
-      _vm._v(" "),
-      _c("login-component")
-    ],
-    1
-  )
+  return _c("div", { staticClass: "login-box" }, [_c("login-component")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -57225,9 +57291,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {}, [
-    _c("h3", [_vm._v("Password component")]),
-    _vm._v(" "),
-    _c("p", [_vm._v("Email: " + _vm._s(_vm.email))]),
+    _c("p", [_vm._v("Пароль")]),
     _vm._v(" "),
     _c("input", {
       directives: [
@@ -57250,17 +57314,19 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.createClub()
+    _c("p", [
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.createClub()
+            }
           }
-        }
-      },
-      [_vm._v("Увійти НА САЙТ")]
-    )
+        },
+        [_vm._v("Увійти")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -74849,9 +74915,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LoginPageBoxComponent_vue_vue_type_template_id_8bf98442_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&scoped=true& */ "./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&scoped=true&");
+/* harmony import */ var _LoginPageBoxComponent_vue_vue_type_template_id_8bf98442___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LoginPageBoxComponent.vue?vue&type=template&id=8bf98442& */ "./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&");
 /* harmony import */ var _LoginPageBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoginPageBoxComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _LoginPageBoxComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -74859,13 +74927,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _LoginPageBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _LoginPageBoxComponent_vue_vue_type_template_id_8bf98442_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _LoginPageBoxComponent_vue_vue_type_template_id_8bf98442_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _LoginPageBoxComponent_vue_vue_type_template_id_8bf98442___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LoginPageBoxComponent_vue_vue_type_template_id_8bf98442___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "8bf98442",
+  null,
   null
   
 )
@@ -74891,19 +74959,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&scoped=true&":
-/*!****************************************************************************************************************!*\
-  !*** ./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&scoped=true& ***!
-  \****************************************************************************************************************/
+/***/ "./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442& ***!
+  \****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_template_id_8bf98442_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_template_id_8bf98442_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_template_id_8bf98442___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./LoginPageBoxComponent.vue?vue&type=template&id=8bf98442& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/firstPage/LoginPageBoxComponent.vue?vue&type=template&id=8bf98442&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_template_id_8bf98442___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_template_id_8bf98442_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPageBoxComponent_vue_vue_type_template_id_8bf98442___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

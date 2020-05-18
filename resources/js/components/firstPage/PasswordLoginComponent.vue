@@ -1,9 +1,10 @@
 <template>
 <div class="">
-    <h3>Password component</h3>
-    <p>Email: {{email}}</p>
+    <!-- <h3>Password component</h3> -->
+    <!-- <p>Email: {{email}}</p> -->
+    <p>Пароль</p>
     <input type="password" id="signup_password" v-model="password" placeholder="Пароль">
-    <button @click="createClub()">Увійти НА САЙТ</button>
+    <p><button @click="createClub()">Увійти</button></p>
 </div>
 </template>
 <script>

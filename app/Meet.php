@@ -17,4 +17,12 @@ class Meet extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Зустріч, належить користувачам.
+    */
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'user_meet', 'meet_id', 'user_id');
+    }
 }

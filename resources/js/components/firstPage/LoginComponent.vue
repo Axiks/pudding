@@ -3,9 +3,8 @@
     <!--0-->
     <P>Email: {{email_users}}</P>
     <input type="email" v-model="email" id="signup_email" placeholder="Эл. почта">
-    <p>Email is: {{ email }}</p>
-    {{Check_email}}
-    <!-- <button @click="checkEmail">Увійти</button> -->
+    <!-- <p>Email is: {{ email }}</p>
+    {{Check_email}} -->
     <password-component v-if="Check_email == 'true'" :email="email"></password-component>
     <register-user v-if="Check_email == 'false'" :email="email"></register-user>
 </div>

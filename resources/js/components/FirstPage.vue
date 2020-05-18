@@ -12,11 +12,13 @@
                             <span>Реєстрація</span>
                         </button>
                     </a>
-                    <a href="/#/login">
+                    <!-- <a href="/#/login">
                         <button id="login">
                             <span>Вхід</span>
                         </button>
-                    </a>
+                    </a> -->
+                    <button id="login" @click="loginFunc()">Вхід</button>
+                    <login-box-component v-if="loginSwitch"></login-box-component>
                 </div>
             </div>
             <div class="posted_img">
@@ -34,6 +36,7 @@
 
 <script>
 import { CLUB_QUERY } from '../constants/graphql'
+import LoginPageBoxComponent from './firstPage/LoginPageBoxComponent.vue';
 
   export default {
       name: 'ClubQuery',
@@ -41,7 +44,8 @@ import { CLUB_QUERY } from '../constants/graphql'
         return{
             club: [],
             // id: Math.floor(Math.random() * 16 + 1)
-            id: 16
+            id: 16,
+            loginSwitch: false
         }
       },
       apollo: {
@@ -53,7 +57,15 @@ import { CLUB_QUERY } from '../constants/graphql'
                 }
             }
         }
-      }
+      },
+    methods: {
+        loginFunc: function(){
+            this.loginSwitch = true
+        }
+    },
+    components:{
+        'login-box-component': LoginPageBoxComponent,
+    }
   }
 </script>
 
