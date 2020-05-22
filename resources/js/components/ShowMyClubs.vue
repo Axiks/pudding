@@ -1,13 +1,9 @@
 <template>
   <div class="container">
-    <loading :active="$apollo.loading"
-        :can-cancel="false" 
-        :is-full-page="false"
-        ></loading>
-        <show-me-clubs></show-me-clubs>
-        <h1>All Clubs</h1>
+    <div v-if="me.clubs">
+      <h1>My Clubs</h1>
       <div class="card-deck justify-content-md-center">
-        <div v-for="club in clubs">
+        <div v-for="club in me.clubs">
             <div class="card" style="width: 18rem; margin-bottom: 25px;">
             <img :src="'/storage/' + club.avatar_src" class="card-img-top" style="height: 200px; object-fit: cover;">
             <div class="card-body">
@@ -18,7 +14,12 @@
             </div>
             </div>
         </div>
+      </div>
     </div>
+    <loading :active="$apollo.loading"
+        :can-cancel="false" 
+        :is-full-page="false"
+        ></loading>
   </div>
 </template>
 
@@ -27,7 +28,7 @@
   import Loading from 'vue-loading-overlay';
   // Import stylesheet
   import 'vue-loading-overlay/dist/vue-loading.css';
-  import { ALL_CLUBS_QUERY } from '../constants/graphql'
+  import { ME_DATA_QUERY } from '../constants/graphql'
   export default {
       name: 'ClubsList',
       data () {
@@ -36,12 +37,11 @@
             name: '',
             description: '',
             avatar_src: '',
-            cover_src: '',
         }
       },
       apollo: {
         // Simple query that will update the 'hello' vue property
-        clubs: ALL_CLUBS_QUERY,
+        me: ME_DATA_QUERY,
       },
       components: {
           Loading

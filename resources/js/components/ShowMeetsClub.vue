@@ -3,7 +3,7 @@
       <div class="meet-list">
         <div v-for="meet in meets_data.meets">
           <div class="meet">
-            <router-link :to="{ name: 'meet', params: {meet_id: meet.id} }" class="link" style="text-decoration: none; color: black;">
+            <router-link :to="{ name: 'meet', params: {id: meet.id} }" class="link" style="text-decoration: none; color: black;">
               <img :src="'/storage/' + meets_data.cover_src" class="cover">
               <div class="club-info">
                 <div class="name">{{meet.title}}</div>

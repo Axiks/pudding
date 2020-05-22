@@ -21,14 +21,16 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('index-page', require('./components/index.vue').default);
+Vue.component('index-page', require('./components/Index.vue').default);
 Vue.component('first-page', require('./components/FirstPage.vue').default);
 Vue.component('create-club', require('./components/CreateClub.vue').default);
 Vue.component('create-meet', require('./components/CreateMeet.vue').default);
 Vue.component('show-clubs', require('./components/ShowClubs.vue').default);
+Vue.component('hub', require('./components/Hub.vue').default);
 Vue.component('show-meets', require('./components/ShowMeetsClub.vue').default);
 Vue.component('upload-files', require('./components/Upload.vue').default);
 Vue.component('upload-cover', require('./components/UploadCover.vue').default);
+Vue.component('show-me-clubs', require('./components/ShowMyClubs.vue').default);
 Vue.component('destroy-avatar-club', require('./components/DestroyAvatarClub.vue').default);
 Vue.component('show-club', require('./components/ShowClub.vue').default);
 Vue.component('register-user', require('./components/firstPage/RegisterUser.vue').default);
@@ -108,12 +110,13 @@ window.VueRouter = require('vue-router');
 
 Vue.use(VueRouter);
 
-var index = require('./components/index.vue');
+var index = require('./components/Index.vue');
 var uploadAvatarClub = require('./components/Upload.vue');
 var createClub = require('./components/CreateClub.vue');
 var Club = require('./components/ShowClub.vue');
 var settingClub = require('./components/SettingClub.vue');
 var Clubs = require('./components/ShowClubs.vue');
+var My_Clubs = require('./components/ShowMyClubs.vue');
 var Meet = require('./components/ShowMeet.vue');
 var firstPage = require('./components/FirstPage.vue');
 var registerUser = require('./components/firstPage/RegisterUser.vue');
@@ -135,6 +138,7 @@ var router = new VueRouter({
     { path: '/club/:id', name: 'club', component: Club.default }, // /about => About.vue
     { path: '/club/:id/setting', name: 'settingClub', component: settingClub.default },
     { path: '/clubs', name: 'clubs', component: Clubs.default },
+    { path: '/myclubs', name: 'myclubs', component: My_Clubs.default },
     { path: '/meet/:id', name: 'meet', component: Meet.default },
     { path: '/firstPage', name: 'firstPage', component: firstPage.default },
     { path: '/registration', name: 'registerUser', component: registerUser.default },

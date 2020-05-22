@@ -23,8 +23,13 @@ export const ALL_CLUBS_QUERY = gql`
       name,
       description,
       avatar_src,
-      cover_src
-    }
+      cover_src,
+    },
+    meets{
+      id
+      title
+      description
+    },
   }
 `
 
@@ -84,6 +89,18 @@ export const CLUB_QUERY = gql`
         map_point,
         end_date,
         user_id,
+      },
+      hobbyes{
+        id
+        name
+      },
+      users{
+        id
+        name
+      },
+      creator{
+        id
+        name
       }
     }
   }
@@ -112,23 +129,32 @@ export const MEET_QUERY = gql`
   # 7
   query meet($id: Int!) {
     meet(id: $id) {
-      id,
-      club_id,
-      user_id,
-      title,
-      description,
-      beginning_date,
-      end_date,
-      map_point,
+      id
+      club_id
+      user_id
+      title
+      description
+      beginning_date
+      end_date
+      map_point
       club{
-        id,
-        name,
-        description,
-      },
+        id
+        name
+        avatar_src
+        cover_src
+        description
+      }
       user{
-        id,
-        name,
+        id
+        name
+        avatar_src
+      }
+      users{
+        id
+        name
+        surname
         email
+        avatar_src
       }
     }
   }
@@ -204,7 +230,13 @@ export const ME_DATA_QUERY = gql`
       avatar_src,
       created_at,
       email,
-      avatar_src
+      avatar_src,
+      clubs{
+        id
+        name
+        avatar_src
+        description
+      }
     }
   }
 `
@@ -214,6 +246,42 @@ export const UPLOAD_USER_AVATAR_MUTATION = gql`
   mutation ($file: Upload!) {
     uploadAvatarUser(
       file: $file
+    )
+  }
+`
+
+export const ADD_USER_MEET_MUTATION = gql`
+  #14
+  mutation ($meet_id: ID!) {
+    addUserMeet(
+      meet_id: $meet_id
+    )
+  }
+`
+
+export const DELETE_USER_MEET_MUTATION = gql`
+  #15
+  mutation ($meet_id: ID!) {
+    deleteUserMeet(
+      meet_id: $meet_id
+    )
+  }
+`
+
+export const ADD_USER_CLUB_MUTATION = gql`
+  #16
+  mutation ($club_id: ID!) {
+    addUserClub(
+      club_id: $club_id
+    )
+  }
+`
+
+  export const DELETE_USER_CLUB_MUTATION = gql`
+  #17
+  mutation ($club_id: ID!) {
+    deleteUserClub(
+      club_id: $club_id
     )
   }
 `
