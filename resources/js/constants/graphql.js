@@ -235,6 +235,15 @@ mutation login($email: String!, $password: String!) {
 }
 `
 
+export const USER_LOGOUT = gql`
+# 11
+mutation logout {
+  logout{
+    status
+  }
+}
+`
+
 export const ME_DATA_QUERY = gql`
   # 12
   query AllMeQuery {

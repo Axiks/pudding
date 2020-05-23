@@ -13,7 +13,7 @@
         type="text"
         placeholder="The Description">
     </div>
-    <button @click="createClub()">Submitt</button>
+    <button @click="createClub()">Створити</button>
   </div>
 </template>
 
@@ -56,7 +56,7 @@
           // This should log the error object but is just printing out the message
           console.log(error);
         })
-        // this.$router.push({ name: "clubs"})
+        this.$router.push({ name: "clubs"})
       }
     }
   }

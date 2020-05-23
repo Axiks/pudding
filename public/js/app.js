@@ -11126,7 +11126,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         // This should log the error object but is just printing out the message
         console.log(error);
-      }); // this.$router.push({ name: "clubs"})
+      });
+      this.$router.push({
+        name: "clubs"
+      });
     }
   }
 });
@@ -11386,6 +11389,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
  //console.log(Vue.http.headers);
 
@@ -11398,6 +11443,21 @@ __webpack_require__.r(__webpack_exports__);
   apollo: {
     me: {
       query: _constants_graphql__WEBPACK_IMPORTED_MODULE_1__["ME_DATA_QUERY"]
+    }
+  },
+  methods: {
+    logout: function logout() {
+      console.log("LogOut btn press");
+      this.$apollo.mutate({
+        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_1__["USER_LOGOUT"]
+      })["catch"](function (error) {
+        console.log(error);
+      }); //location.reload()
+
+      this.$router.push({
+        name: "firstPage"
+      });
+      location.reload(); // this.$router.push({ name: "clubs"})
     }
   }
 });
@@ -12451,8 +12511,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.access_token = data.data.login.access_token;
         localStorage.setItem('token', data.data.login.access_token);
 
-        _this.$router.push("me"); //console.log('LocalToken: '+ localStorage.getItem('token'))
+        _this.$router.push("me");
 
+        location.reload(); //console.log('LocalToken: '+ localStorage.getItem('token'))
       })["catch"](function (error) {
         // This should log the error object but is just printing out the message
         console.log(error);
@@ -56510,7 +56571,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v("Submitt")]
+      [_vm._v("Створити")]
     )
   ])
 }
@@ -56854,20 +56915,31 @@ var render = function() {
     "nav",
     { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
     [
-      _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-        _vm._v("Biskvit")
-      ]),
-      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "collapse navbar-collapse", attrs: { id: "navbarNav" } },
+        {
+          staticClass: "collapse navbar-collapse",
+          attrs: { id: "navbarTogglerDemo01" }
+        },
         [
-          _c("ul", { staticClass: "navbar-nav" }, [
+          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+            _c("img", {
+              staticClass: "mr-2",
+              attrs: {
+                src: "/storage/default/favicon.png",
+                width: "45",
+                height: "45",
+                alt: ""
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "navbar-nav mr-auto mt-2 mt-lg-0" }, [
             _c(
               "li",
-              { staticClass: "nav-item active" },
+              { staticClass: "nav-item" },
               [
                 _c(
                   "router-link",
@@ -56876,72 +56948,122 @@ var render = function() {
                 )
               ],
               1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/firstPage" } },
-                  [_vm._v("Початкова сторінка")]
-                )
-              ],
-              1
             )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _vm.me
-        ? _c(
-            "div",
-            [
-              _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/me" } },
+          ]),
+          _vm._v(" "),
+          _vm.me
+            ? _c(
+                "form",
+                { staticClass: "form-inline my-2 my-lg-0" },
                 [
                   _c(
                     "router-link",
                     {
-                      staticClass: "btn btn-success mr-3",
+                      staticClass: "btn btn-success mr-3 my-2 my-sm-0 ml-3",
                       attrs: { to: "/club/create" }
                     },
                     [_vm._v("Створити Клуб")]
                   ),
                   _vm._v(" "),
-                  _vm.me.avatar_src
-                    ? _c("img", {
-                        staticStyle: {
-                          height: "45px",
-                          width: "45px",
-                          "border-radius": "50%",
-                          "object-fit": "cover",
-                          border: "3px solid #ffffff"
+                  _c("ul", { staticClass: "navbar-nav" }, [
+                    _c("li", { staticClass: "nav-item dropdown" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link dropdown-toggle",
+                          attrs: {
+                            href: "#",
+                            id: "navbarDropdownMenuLink",
+                            "data-toggle": "dropdown",
+                            "aria-haspopup": "true",
+                            "aria-expanded": "false"
+                          }
                         },
-                        attrs: { src: "/storage/" + _vm.me.avatar_src }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("b", [_vm._v(_vm._s(_vm.me.name))])
+                        [
+                          _vm.me.avatar_src
+                            ? _c("img", {
+                                staticClass: "mr-2",
+                                staticStyle: {
+                                  height: "45px",
+                                  width: "45px",
+                                  "border-radius": "50%",
+                                  "object-fit": "cover",
+                                  border: "3px solid #ffffff"
+                                },
+                                attrs: { src: "/storage/" + _vm.me.avatar_src }
+                              })
+                            : _vm._e(),
+                          _vm._v(
+                            "\n               " +
+                              _vm._s(_vm.me.name) +
+                              "\n             "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dropdown-menu",
+                          attrs: { "aria-labelledby": "navbarDropdownMenuLink" }
+                        },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { to: "/me" }
+                            },
+                            [_vm._v("Профіль")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { to: "/setting" }
+                            },
+                            [_vm._v("Налаштування")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.logout()
+                                }
+                              }
+                            },
+                            [_vm._v("Вийти")]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
                 ],
                 1
               )
-            ],
-            1
-          )
-        : _c(
-            "div",
-            [
-              _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/firstPage" } },
-                [_vm._v("Увійти")]
+            : _c(
+                "form",
+                { staticClass: "form-inline my-2 my-lg-0" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-primary mr-3 my-2 my-sm-0 ml-3",
+                      attrs: { to: "/firstPage" }
+                    },
+                    [_vm._v("Увійти")]
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
+        ]
+      )
     ]
   )
 }
@@ -56957,8 +57079,8 @@ var staticRenderFns = [
         attrs: {
           type: "button",
           "data-toggle": "collapse",
-          "data-target": "#navbarNav",
-          "aria-controls": "navbarNav",
+          "data-target": "#navbarTogglerDemo01",
+          "aria-controls": "navbarTogglerDemo01",
           "aria-expanded": "false",
           "aria-label": "Toggle navigation"
         }
@@ -76724,7 +76846,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./resources/js/constants/graphql.js ***!
   \*******************************************/
-/*! exports provided: CREATE_CLUB_MUTATION, ALL_CLUBS_QUERY, UPLOAD_FILES_MUTATION, UPLOAD_COVER_CLUB_MUTATION, DESTROY_AVATAR_CLUB_MUTATION, DESTROY_CLUB_MUTATION, CLUB_QUERY, CREATE_MEET_MUTATION, MEET_QUERY, CREATE_USER_MUTATION, USER_QUERY, EMAIL_CHECK, USER_LOGIN, ME_DATA_QUERY, UPLOAD_USER_AVATAR_MUTATION, ADD_USER_MEET_MUTATION, DELETE_USER_MEET_MUTATION, ADD_USER_CLUB_MUTATION, DELETE_USER_CLUB_MUTATION */
+/*! exports provided: CREATE_CLUB_MUTATION, ALL_CLUBS_QUERY, UPLOAD_FILES_MUTATION, UPLOAD_COVER_CLUB_MUTATION, DESTROY_AVATAR_CLUB_MUTATION, DESTROY_CLUB_MUTATION, CLUB_QUERY, CREATE_MEET_MUTATION, MEET_QUERY, CREATE_USER_MUTATION, USER_QUERY, EMAIL_CHECK, USER_LOGIN, USER_LOGOUT, ME_DATA_QUERY, UPLOAD_USER_AVATAR_MUTATION, ADD_USER_MEET_MUTATION, DELETE_USER_MEET_MUTATION, ADD_USER_CLUB_MUTATION, DELETE_USER_CLUB_MUTATION */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76742,6 +76864,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_QUERY", function() { return USER_QUERY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EMAIL_CHECK", function() { return EMAIL_CHECK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_LOGIN", function() { return USER_LOGIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_LOGOUT", function() { return USER_LOGOUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ME_DATA_QUERY", function() { return ME_DATA_QUERY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_USER_AVATAR_MUTATION", function() { return UPLOAD_USER_AVATAR_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_USER_MEET_MUTATION", function() { return ADD_USER_MEET_MUTATION; });
@@ -76750,8 +76873,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_USER_CLUB_MUTATION", function() { return DELETE_USER_CLUB_MUTATION; });
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
-function _templateObject19() {
+function _templateObject20() {
   var data = _taggedTemplateLiteral(["\n  #17\n  mutation ($club_id: ID!) {\n    deleteUserClub(\n      club_id: $club_id\n    )\n  }\n"]);
+
+  _templateObject20 = function _templateObject20() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject19() {
+  var data = _taggedTemplateLiteral(["\n  #16\n  mutation ($club_id: ID!) {\n    addUserClub(\n      club_id: $club_id\n    )\n  }\n"]);
 
   _templateObject19 = function _templateObject19() {
     return data;
@@ -76761,7 +76894,7 @@ function _templateObject19() {
 }
 
 function _templateObject18() {
-  var data = _taggedTemplateLiteral(["\n  #16\n  mutation ($club_id: ID!) {\n    addUserClub(\n      club_id: $club_id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #15\n  mutation ($meet_id: ID!) {\n    deleteUserMeet(\n      meet_id: $meet_id\n    )\n  }\n"]);
 
   _templateObject18 = function _templateObject18() {
     return data;
@@ -76771,7 +76904,7 @@ function _templateObject18() {
 }
 
 function _templateObject17() {
-  var data = _taggedTemplateLiteral(["\n  #15\n  mutation ($meet_id: ID!) {\n    deleteUserMeet(\n      meet_id: $meet_id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #14\n  mutation ($meet_id: ID!) {\n    addUserMeet(\n      meet_id: $meet_id\n    )\n  }\n"]);
 
   _templateObject17 = function _templateObject17() {
     return data;
@@ -76781,7 +76914,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n  #14\n  mutation ($meet_id: ID!) {\n    addUserMeet(\n      meet_id: $meet_id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #13\n  mutation ($file: Upload!) {\n    uploadAvatarUser(\n      file: $file\n    )\n  }\n"]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -76791,7 +76924,7 @@ function _templateObject16() {
 }
 
 function _templateObject15() {
-  var data = _taggedTemplateLiteral(["\n  #13\n  mutation ($file: Upload!) {\n    uploadAvatarUser(\n      file: $file\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 12\n  query AllMeQuery {\n    me{\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      },\n      meets{\n        id,\n        title\n        club{\n          id\n          name\n          avatar_src\n        }\n      }\n    }\n  }\n"]);
 
   _templateObject15 = function _templateObject15() {
     return data;
@@ -76801,7 +76934,7 @@ function _templateObject15() {
 }
 
 function _templateObject14() {
-  var data = _taggedTemplateLiteral(["\n  # 12\n  query AllMeQuery {\n    me{\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      },\n      meets{\n        id,\n        title\n        club{\n          id\n          name\n          avatar_src\n        }\n      }\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n# 11\nmutation logout {\n  logout{\n    status\n  }\n}\n"]);
 
   _templateObject14 = function _templateObject14() {
     return data;
@@ -76957,12 +77090,13 @@ var CREATE_USER_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_t
 var USER_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject11());
 var EMAIL_CHECK = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject12());
 var USER_LOGIN = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject13());
-var ME_DATA_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject14());
-var UPLOAD_USER_AVATAR_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject15());
-var ADD_USER_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject16());
-var DELETE_USER_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject17());
-var ADD_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject18());
-var DELETE_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject19());
+var USER_LOGOUT = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject14());
+var ME_DATA_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject15());
+var UPLOAD_USER_AVATAR_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject16());
+var ADD_USER_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject17());
+var DELETE_USER_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject18());
+var ADD_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject19());
+var DELETE_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject20());
 
 /***/ }),
 

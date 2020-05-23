@@ -40,6 +40,7 @@ export default {
             this.access_token = data.data.login.access_token
             localStorage.setItem('token',  data.data.login.access_token)
             this.$router.push("me")
+            location.reload()
             //console.log('LocalToken: '+ localStorage.getItem('token'))
         })
         .catch((error) => {
