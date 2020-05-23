@@ -10,21 +10,20 @@
                         <router-link to="/clubs" class="nav-link">Усі клуби</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/club/create" class="nav-link">Створити Клуб</router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/firstPage" class="nav-link">Початкова сторінка</router-link>
                     </li>
+                    
                 </ul>
             </div>
             <div v-if="me">
               <router-link to="/me" class="nav-link">
+                <router-link to="/club/create" class="btn btn-success mr-3">Створити Клуб</router-link>
                 <img v-if="me.avatar_src" :src="'/storage/' + me.avatar_src" style="height: 45px; width: 45px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff;">
                 <b>{{me.name}}</b>
               </router-link>
             </div>
             <div v-else>
-              <router-link to="/login" class="nav-link">Увійти</router-link>
+              <router-link to="/firstPage" class="nav-link">Увійти</router-link>
             </div>
         </nav>
 </template>

@@ -19,20 +19,29 @@
 
 <script>
   import { CREATE_CLUB_MUTATION } from '../constants/graphql'
+  import { ME_DATA_QUERY } from '../constants/graphql'
   export default {
     name: 'CreateClub',
     data () {
       return {
+        me: [],
         name: ' ',
         description: ' ',
         cover_src: 'def',
-        creator_id: '1544'
+        creator_id: null
       }
+    },
+    apollo: {
+      // Simple query that will update the 'hello' vue property
+      me:{
+          query: ME_DATA_QUERY,
+      }  
     },
     methods: {
       createClub () {
         console.log(this.$data)
         // ... you'll implement this in a bit
+        this.$data.creator_id = this.me.id + ""
         const { name, description, cover_src, creator_id} = this.$data
         this.$apollo.mutate({
             mutation: CREATE_CLUB_MUTATION,
@@ -47,6 +56,7 @@
           // This should log the error object but is just printing out the message
           console.log(error);
         })
+        // this.$router.push({ name: "clubs"})
       }
     }
   }

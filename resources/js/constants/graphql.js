@@ -191,7 +191,24 @@ export const USER_QUERY = gql`
       birthday,
       description,
       avatar_src,
-      created_at
+      created_at,
+      email,
+      avatar_src,
+      clubs{
+        id
+        name
+        avatar_src
+        description
+      }
+      meets{
+        id
+        title
+        club{
+          id
+          name
+          avatar_src
+        }
+      }
     }
   }
 `
@@ -236,6 +253,15 @@ export const ME_DATA_QUERY = gql`
         name
         avatar_src
         description
+      },
+      meets{
+        id,
+        title
+        club{
+          id
+          name
+          avatar_src
+        }
       }
     }
   }

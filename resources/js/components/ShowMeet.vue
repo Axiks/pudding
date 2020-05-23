@@ -26,7 +26,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="text-center" style="padding: 16px;">{{meet.title}}</h3><img class="img-fluid border rounded-circle d-flex flex-fill mx-auto justify-content-xl-center align-items-xl-center" :src="'/storage/' + meet.club.avatar_src" width="120px" height="120px"></div>
+                    <h3 class="text-center" style="padding: 16px;">{{meet.title}}</h3>
+                    <img :src="'/storage/' + meet.club.avatar_src" class="card-img-top img-fluid border rounded-circle d-flex flex-fill mx-auto justify-content-xl-center align-items-xl-center" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; ">
+                  </div>
+                    
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -57,7 +60,8 @@
                     <div>
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <div><img class="border rounded float-left" :src="'/storage/' + meet.club.avatar_src" width="120px">
+                                <div>
+                                    <img :src="'/storage/' + meet.club.avatar_src" class="card-img-top float-left" style="height: 80px; width: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; ">
                                     <router-link :to="{ name: 'club', params: {id: meet.club.id} }" style="text-decoration: none;">
                                       <h5 class="float-left" style="padding-left: 10px;">{{meet.club.name}}</h5>
                                     </router-link>

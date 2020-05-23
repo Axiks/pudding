@@ -11087,20 +11087,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CreateClub',
   data: function data() {
     return {
+      me: [],
       name: ' ',
       description: ' ',
       cover_src: 'def',
-      creator_id: '1544'
+      creator_id: null
     };
+  },
+  apollo: {
+    // Simple query that will update the 'hello' vue property
+    me: {
+      query: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["ME_DATA_QUERY"]
+    }
   },
   methods: {
     createClub: function createClub() {
       console.log(this.$data); // ... you'll implement this in a bit
 
+      this.$data.creator_id = this.me.id + "";
       var _this$$data = this.$data,
           name = _this$$data.name,
           description = _this$$data.description,
@@ -11117,7 +11126,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         // This should log the error object but is just printing out the message
         console.log(error);
-      });
+      }); // this.$router.push({ name: "clubs"})
     }
   }
 });
@@ -11347,7 +11356,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/graphql */ "./resources/js/constants/graphql.js");
-//
 //
 //
 //
@@ -11753,6 +11761,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  //console.log(Vue.http.headers);
 
@@ -11787,6 +11833,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/graphql */ "./resources/js/constants/graphql.js");
+//
+//
+//
+//
 //
 //
 //
@@ -12059,6 +12109,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/graphql */ "./resources/js/constants/graphql.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -56794,19 +56884,6 @@ var render = function() {
               [
                 _c(
                   "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/club/create" } },
-                  [_vm._v("Створити Клуб")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
                   { staticClass: "nav-link", attrs: { to: "/firstPage" } },
                   [_vm._v("Початкова сторінка")]
                 )
@@ -56825,6 +56902,15 @@ var render = function() {
                 "router-link",
                 { staticClass: "nav-link", attrs: { to: "/me" } },
                 [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-success mr-3",
+                      attrs: { to: "/club/create" }
+                    },
+                    [_vm._v("Створити Клуб")]
+                  ),
+                  _vm._v(" "),
                   _vm.me.avatar_src
                     ? _c("img", {
                         staticStyle: {
@@ -56839,7 +56925,8 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _c("b", [_vm._v(_vm._s(_vm.me.name))])
-                ]
+                ],
+                1
               )
             ],
             1
@@ -56849,7 +56936,7 @@ var render = function() {
             [
               _c(
                 "router-link",
-                { staticClass: "nav-link", attrs: { to: "/login" } },
+                { staticClass: "nav-link", attrs: { to: "/firstPage" } },
                 [_vm._v("Увійти")]
               )
             ],
@@ -57410,52 +57497,183 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid p-0 m-0" }, [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col" }, [
-          _c("div", { attrs: { id: "name" } }, [_vm._v(_vm._s(_vm.me.name))])
-        ])
-      ]),
-      _vm._v(" "),
+    _c("div", [
       _c(
         "div",
-        { staticClass: "row", staticStyle: { "padding-top": "50px" } },
+        { staticClass: "container", staticStyle: { "padding-top": "64px" } },
         [
-          _c(
-            "div",
-            { staticClass: "shadow-sm col block mt-3" },
-            [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
               _c("img", {
-                staticStyle: {
-                  height: "200px",
-                  width: "200px",
-                  "border-radius": "50%",
-                  "object-fit": "cover",
-                  border: "3px solid #ffffff"
-                },
-                attrs: { src: "/storage/" + _vm.me.avatar_src }
+                staticClass:
+                  "img-fluid border rounded-circle d-flex float-left flex-fill mx-auto justify-content-xl-center align-items-xl-center",
+                attrs: { src: "/storage/" + _vm.me.avatar_src, width: "220px" }
               }),
               _vm._v(" "),
-              _c("h3", [_vm._v("Опис")]),
-              _vm._v(" "),
-              _c("h6", [_vm._v(_vm._s(_vm.me.description))]),
-              _vm._v(
-                "\n                " + _vm._s(_vm.me) + "\n                "
-              ),
               _c(
-                "router-link",
-                { attrs: { id: "setting", to: { name: "setting" } } },
-                [_vm._v("Налаштування")]
+                "h3",
+                {
+                  staticClass: "text-center",
+                  staticStyle: { padding: "16px" }
+                },
+                [_vm._v(_vm._s(_vm.me.name) + " " + _vm._s(_vm.me.surname))]
               )
-            ],
-            1
-          )
+            ])
+          ]),
+          _vm._v(" "),
+          _vm.me.description
+            ? _c(
+                "div",
+                { staticClass: "row", staticStyle: { padding: "12px" } },
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("h1", [_vm._v("Про себе")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.me.description) +
+                          "\n                "
+                      )
+                    ])
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.me.clubs
+            ? _c("div", { staticClass: "row mt-3" }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("h1", [_vm._v("Учасник Клубів")]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "ul",
+                      { staticClass: "list-group" },
+                      _vm._l(_vm.me.clubs, function(item) {
+                        return _c(
+                          "li",
+                          { key: item.id, staticClass: "mt-2" },
+                          [
+                            _c("img", {
+                              staticClass: "border rounded float-left",
+                              attrs: {
+                                src: "/storage/" + item.avatar_src,
+                                width: "80px"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticStyle: { "text-decoration": "none" },
+                                attrs: {
+                                  to: { name: "club", params: { id: item.id } }
+                                }
+                              },
+                              [
+                                _c(
+                                  "h5",
+                                  {
+                                    staticClass: "float-left",
+                                    staticStyle: { "padding-left": "10px" }
+                                  },
+                                  [_vm._v(_vm._s(item.name))]
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.me.meets
+            ? _c(
+                "div",
+                {
+                  staticClass: "row mt-3",
+                  staticStyle: { "padding-top": "12px" }
+                },
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("h1", [_vm._v("Зустрічі учасника")]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "ul",
+                        { staticClass: "list-group" },
+                        _vm._l(_vm.me.meets, function(item) {
+                          return _c(
+                            "li",
+                            { key: item.id, staticClass: "mt-2" },
+                            [
+                              _c("img", {
+                                staticClass: "border rounded float-left",
+                                attrs: {
+                                  src: "/storage/" + item.club.avatar_src,
+                                  width: "80px"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "router-link",
+                                {
+                                  staticStyle: { "text-decoration": "none" },
+                                  attrs: {
+                                    to: {
+                                      name: "meet",
+                                      params: { id: item.id }
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "h5",
+                                    {
+                                      staticClass: "float-left",
+                                      staticStyle: { "padding-left": "10px" }
+                                    },
+                                    [_vm._v(_vm._s(item.title))]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        }),
+                        0
+                      )
+                    ])
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._m(0)
         ]
       )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", {
+        staticClass: "col-md-12",
+        staticStyle: { "padding-bottom": "100px" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -57565,14 +57783,18 @@ var render = function() {
               { staticClass: "text-center", staticStyle: { padding: "16px" } },
               [_vm._v(_vm._s(_vm.meet.title))]
             ),
+            _vm._v(" "),
             _c("img", {
               staticClass:
-                "img-fluid border rounded-circle d-flex flex-fill mx-auto justify-content-xl-center align-items-xl-center",
-              attrs: {
-                src: "/storage/" + _vm.meet.club.avatar_src,
+                "card-img-top img-fluid border rounded-circle d-flex flex-fill mx-auto justify-content-xl-center align-items-xl-center",
+              staticStyle: {
+                height: "120px",
                 width: "120px",
-                height: "120px"
-              }
+                "border-radius": "50%",
+                "object-fit": "cover",
+                border: "3px solid #ffffff"
+              },
+              attrs: { src: "/storage/" + _vm.meet.club.avatar_src }
             })
           ])
         ]),
@@ -57660,11 +57882,15 @@ var render = function() {
                     "div",
                     [
                       _c("img", {
-                        staticClass: "border rounded float-left",
-                        attrs: {
-                          src: "/storage/" + _vm.meet.club.avatar_src,
-                          width: "120px"
-                        }
+                        staticClass: "card-img-top float-left",
+                        staticStyle: {
+                          height: "80px",
+                          width: "80px",
+                          "border-radius": "50%",
+                          "object-fit": "cover",
+                          border: "3px solid #ffffff"
+                        },
+                        attrs: { src: "/storage/" + _vm.meet.club.avatar_src }
                       }),
                       _vm._v(" "),
                       _c(
@@ -57984,28 +58210,194 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid p-0 m-0" }, [
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col" }, [
-          _c("div", { attrs: { id: "name" } }, [_vm._v(_vm._s(_vm.user.name))])
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row", staticStyle: { "padding-top": "50px" } },
-        [
-          _c("div", { staticClass: "shadow-sm col block mt-3" }, [
-            _c("h3", [_vm._v("Опис")]),
+      _c("div", [
+        _c(
+          "div",
+          { staticClass: "container", staticStyle: { "padding-top": "64px" } },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("img", {
+                  staticClass:
+                    "img-fluid border rounded-circle d-flex float-left flex-fill mx-auto justify-content-xl-center align-items-xl-center",
+                  attrs: {
+                    src: "/storage/" + _vm.user.avatar_src,
+                    width: "220px"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "h3",
+                  {
+                    staticClass: "text-center",
+                    staticStyle: { padding: "16px" }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(_vm.user.name) + " " + _vm._s(_vm.user.surname)
+                    )
+                  ]
+                )
+              ])
+            ]),
             _vm._v(" "),
-            _c("h6", [_vm._v(_vm._s(_vm.user.description))]),
-            _vm._v("\n                " + _vm._s(_vm.user) + "\n            ")
-          ])
-        ]
-      )
+            _vm.user.description
+              ? _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { padding: "12px" } },
+                  [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("h1", [_vm._v("Про себе")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.user.description) +
+                            "\n                "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.user.clubs
+              ? _c("div", { staticClass: "row mt-3" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("h1", [_vm._v("Учасник Клубів")]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "ul",
+                        { staticClass: "list-group" },
+                        _vm._l(_vm.user.clubs, function(item) {
+                          return _c(
+                            "li",
+                            { key: item.id, staticClass: "mt-2" },
+                            [
+                              _c("img", {
+                                staticClass: "border rounded float-left",
+                                attrs: {
+                                  src: "/storage/" + item.avatar_src,
+                                  width: "80px"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "router-link",
+                                {
+                                  staticStyle: { "text-decoration": "none" },
+                                  attrs: {
+                                    to: {
+                                      name: "club",
+                                      params: { id: item.id }
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "h5",
+                                    {
+                                      staticClass: "float-left",
+                                      staticStyle: { "padding-left": "10px" }
+                                    },
+                                    [_vm._v(_vm._s(item.name))]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        }),
+                        0
+                      )
+                    ])
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.user.meets
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "row mt-3",
+                    staticStyle: { "padding-top": "12px" }
+                  },
+                  [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("h1", [_vm._v("Зустрічі учасника")]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "ul",
+                          { staticClass: "list-group" },
+                          _vm._l(_vm.user.meets, function(item) {
+                            return _c(
+                              "li",
+                              { key: item.id, staticClass: "mt-2" },
+                              [
+                                _c("img", {
+                                  staticClass: "border rounded float-left",
+                                  attrs: {
+                                    src: "/storage/" + item.club.avatar_src,
+                                    width: "80px"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticStyle: { "text-decoration": "none" },
+                                    attrs: {
+                                      to: {
+                                        name: "meet",
+                                        params: { id: item.id }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "h5",
+                                      {
+                                        staticClass: "float-left",
+                                        staticStyle: { "padding-left": "10px" }
+                                      },
+                                      [_vm._v(_vm._s(item.title))]
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
+        )
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", {
+        staticClass: "col-md-12",
+        staticStyle: { "padding-bottom": "100px" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -76409,7 +76801,7 @@ function _templateObject15() {
 }
 
 function _templateObject14() {
-  var data = _taggedTemplateLiteral(["\n  # 12\n  query AllMeQuery {\n    me{\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      }\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 12\n  query AllMeQuery {\n    me{\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      },\n      meets{\n        id,\n        title\n        club{\n          id\n          name\n          avatar_src\n        }\n      }\n    }\n  }\n"]);
 
   _templateObject14 = function _templateObject14() {
     return data;
@@ -76439,7 +76831,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["\n  # 9\n  query GetUser($id: ID!){\n    user(id: $id){\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 9\n  query GetUser($id: ID!){\n    user(id: $id){\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      }\n      meets{\n        id\n        title\n        club{\n          id\n          name\n          avatar_src\n        }\n      }\n    }\n  }\n"]);
 
   _templateObject11 = function _templateObject11() {
     return data;
