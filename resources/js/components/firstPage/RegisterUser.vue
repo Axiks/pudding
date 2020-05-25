@@ -42,7 +42,8 @@
         email: this.email,
         password: '',
         password_confirmation: '',
-        birthday: '1990-08-24'
+        birthday: '1990-08-24',
+        error: false
       }
     },
     methods: {
@@ -64,7 +65,13 @@
         .catch((error) => {
           // This should log the error object but is just printing out the message
           console.log(error);
+          this.error = true;
         })
+        if(!this.error){
+          this.$router.push("firstPage")
+          location.reload()
+        }
+        
       }
     }
   }

@@ -36,10 +36,10 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">
-              <img :src="'/storage/default/favicon.png'" class="mr-2" width="45" height="45" alt="">
-              <!-- Biskvit -->
-            </a>
+              <router-link to="/clubs" class="navbar-brand">
+                <img :src="'/storage/default/favicon.png'" class="mr-2" width="45" height="45" alt="">
+                <!-- Biskvit -->
+              </router-link>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <li class="nav-item">
                 <router-link to="/clubs" class="nav-link">Усі клуби</router-link>

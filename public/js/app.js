@@ -11656,6 +11656,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -12579,11 +12580,14 @@ __webpack_require__.r(__webpack_exports__);
       email: this.email,
       password: '',
       password_confirmation: '',
-      birthday: '1990-08-24'
+      birthday: '1990-08-24',
+      error: false
     };
   },
   methods: {
     createClub: function createClub() {
+      var _this = this;
+
       console.log(this.$data); // ... you'll implement this in a bit
 
       var _this$$data = this.$data,
@@ -12606,7 +12610,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         // This should log the error object but is just printing out the message
         console.log(error);
+        _this.error = true;
       });
+
+      if (!this.error) {
+        this.$router.push("firstPage");
+        location.reload();
+      }
     }
   }
 });
@@ -56719,7 +56729,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v("Submit")]
+      [_vm._v("Створити зустріч")]
     )
   ])
 }
@@ -56924,17 +56934,21 @@ var render = function() {
           attrs: { id: "navbarTogglerDemo01" }
         },
         [
-          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-            _c("img", {
-              staticClass: "mr-2",
-              attrs: {
-                src: "/storage/default/favicon.png",
-                width: "45",
-                height: "45",
-                alt: ""
-              }
-            })
-          ]),
+          _c(
+            "router-link",
+            { staticClass: "navbar-brand", attrs: { to: "/clubs" } },
+            [
+              _c("img", {
+                staticClass: "mr-2",
+                attrs: {
+                  src: "/storage/default/favicon.png",
+                  width: "45",
+                  height: "45",
+                  alt: ""
+                }
+              })
+            ]
+          ),
           _vm._v(" "),
           _c("ul", { staticClass: "navbar-nav mr-auto mt-2 mt-lg-0" }, [
             _c(
@@ -57062,7 +57076,8 @@ var render = function() {
                 ],
                 1
               )
-        ]
+        ],
+        1
       )
     ]
   )

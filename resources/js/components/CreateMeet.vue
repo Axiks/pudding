@@ -27,7 +27,7 @@
         type="text"
         placeholder="A map point">
     </div>
-    <button @click="createMeet()">Submit</button>
+    <button @click="createMeet()">Створити зустріч</button>
   </div>
 </template>
 

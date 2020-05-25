@@ -47,6 +47,7 @@
                     </div>
                 </div>
             </div>
+            <!-- <create-meet :club_id="id"></create-meet> -->
             <div class="row" style= "margin-bottom: 50px;">
                 <div class="shadow-sm col block mt-3">
                     <h3>Засновник</h3>
@@ -99,9 +100,9 @@ import {  ME_DATA_QUERY } from '../constants/graphql'
         })
         },
         deleteClubUser: function(id) {
-        console.log("Btn press delete. ID" + id);
-        location.reload()
-        this.$apollo
+            console.log("Btn press delete. ID" + id);
+            location.reload()
+            this.$apollo
             .mutate({
             mutation: DELETE_USER_CLUB_MUTATION,
             variables: {
