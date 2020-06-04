@@ -7,6 +7,9 @@
                         <h1>Biskvit</h1>
                         <h2>Знайди своє захоплення</h2>
                 <div class="">
+                    <transition name="login">
+                        <login-box-component v-if="loginSwitch" style="margin-top: 35px"></login-box-component>
+                    </transition>
                     <a href="/#/registration" rel="noopener noreferrer">
                         <button id="registration">
                             <span>Реєстрація</span>
@@ -17,8 +20,7 @@
                             <span>Вхід</span>
                         </button>
                     </a> -->
-                    <button id="login" @click="loginFunc()">Вхід</button>
-                    <login-box-component v-if="loginSwitch"></login-box-component>
+                    <button v-if="!loginSwitch" id="login" @click="loginFunc()">Вхід</button>
                 </div>
             </div>
             <div class="posted_img">

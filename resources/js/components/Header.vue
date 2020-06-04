@@ -77,7 +77,7 @@ import { USER_LOGOUT } from '../constants/graphql'
   export default {
       data () {
         return{
-            me: []
+            me: [],
         }
       },
       apollo: {
@@ -95,6 +95,7 @@ import { USER_LOGOUT } from '../constants/graphql'
           console.log(error);
         })
         //location.reload()
+        localStorage.removeItem('token')
         this.$router.push({ name: "firstPage"})
         location.reload()
         // this.$router.push({ name: "clubs"})

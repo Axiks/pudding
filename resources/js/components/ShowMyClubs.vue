@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="me.clubs">
+    <div v-if="me.clubs.lenght > 0">
       <h1>My Clubs</h1>
       <div class="card-deck justify-content-md-center">
         <div v-for="club in me.clubs">
