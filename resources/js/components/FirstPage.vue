@@ -38,6 +38,7 @@
 
 <script>
 import { CLUB_QUERY } from '../constants/graphql'
+import { ALL_CLUBS_QUERY } from '../constants/graphql'
 import LoginPageBoxComponent from './firstPage/LoginPageBoxComponent.vue';
 
   export default {
@@ -45,6 +46,7 @@ import LoginPageBoxComponent from './firstPage/LoginPageBoxComponent.vue';
       data () {
         return{
             club: [],
+            clubs: [],
             // id: Math.floor(Math.random() * 16 + 1)
             id: 16,
             loginSwitch: false
@@ -58,11 +60,23 @@ import LoginPageBoxComponent from './firstPage/LoginPageBoxComponent.vue';
                     id: this.id,
                 }
             }
+        },
+        clubs: {
+            query:  ALL_CLUBS_QUERY,
+            variables() {
+                return {
+                }
+            }
         }
       },
     methods: {
         loginFunc: function(){
             this.loginSwitch = true
+        },
+        randomClub: function(){
+            var clubsCount = this.clubs.length;
+            console.log("Clubs lenght: " + clubsCount);
+            return 16;
         }
     },
     components:{

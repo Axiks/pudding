@@ -15,6 +15,21 @@ export const CREATE_CLUB_MUTATION = gql`
     }
   }
 `
+
+export const UPDATE_CLUB_MUTATION = gql`
+  # 1
+  mutation updateClub($id: ID!, $name: String, $description: String) {
+    updateClub(
+      id: $id,
+      name: $name,
+      description: $description,
+    ) {
+      id
+      name
+      description
+    }
+  }
+`
 export const ALL_CLUBS_QUERY = gql`
   # 2
   query AllClubsQuery {
@@ -33,7 +48,7 @@ export const ALL_CLUBS_QUERY = gql`
   }
 `
 
-export const UPLOAD_FILES_MUTATION = gql`
+export const UPLOAD_AVATAR_CLUB_MUTATION = gql`
   #3
   mutation ($file: Upload!, $id: ID!) {
     uploadAvatarClub(
@@ -57,6 +72,14 @@ export const DESTROY_AVATAR_CLUB_MUTATION = gql`
   #4
   mutation ($id: ID!) {
     destroyAvatarClub(
+      id: $id
+    )
+  }
+`
+export const DESTROY_COVER_CLUB_MUTATION = gql`
+  #4
+  mutation ($id: ID!) {
+    destroyCoverClub(
       id: $id
     )
   }
@@ -318,5 +341,15 @@ export const ADD_USER_CLUB_MUTATION = gql`
     deleteUserClub(
       club_id: $club_id
     )
+  }
+`
+
+export const ALL_HOBBY_QUERY = gql`
+  # 18
+  query AllHobbyList {
+    hobby_lists{
+      id
+      name
+    }
   }
 `

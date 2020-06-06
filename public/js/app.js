@@ -11086,6 +11086,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11093,8 +11122,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       me: [],
+      hobby_lists: [],
       name: ' ',
       description: ' ',
+      selectedTags: null,
       cover_src: 'def',
       creator_id: null
     };
@@ -11103,6 +11134,9 @@ __webpack_require__.r(__webpack_exports__);
     // Simple query that will update the 'hello' vue property
     me: {
       query: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["ME_DATA_QUERY"]
+    },
+    hobby_lists: {
+      query: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["ALL_HOBBY_QUERY"]
     }
   },
   methods: {
@@ -11130,7 +11164,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: "clubs"
       });
-    }
+    },
+    addTag: function addTag() {}
   }
 });
 
@@ -11145,7 +11180,30 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/graphql */ "./resources/js/constants/graphql.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/graphql */ "./resources/js/constants/graphql.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11180,15 +11238,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['club_id'],
   name: 'CreateMeet',
+  computed: {
+    years: function years() {
+      //const year = new Date().getFullYear()
+      var year = 2010;
+      return Array.from({
+        length: year - 1900
+      }, function (value, index) {
+        return year - index;
+      });
+    },
+    nowDate: function nowDate() {
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()().format('YYYY-MM-DD');
+    }
+  },
   data: function data() {
     return {
-      title: '',
-      description: '',
-      beginning_date: '2019-09-20 10:00:00',
-      end_date: '2019-09-22 16:00:00',
+      title: null,
+      description: null,
+      //beginning_date: '2019-09-20 10:00:00',
+      //end_date: '2019-09-22 16:00:00',
+      beginning_date: null,
+      beginning_time: null,
+      end_date: null,
+      end_time: null,
       map_point: '37.235,-115.811111',
       user_id: 1
     };
@@ -11198,6 +11275,8 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.club_id);
       console.log(this.$data); // ... you'll implement this in a bit
 
+      this.$data.beginning_date = moment__WEBPACK_IMPORTED_MODULE_0___default()(this.beginning_date + " " + this.beginning_time).format('YYYY-MM-DD HH:mm:ss');
+      this.$data.end_date = moment__WEBPACK_IMPORTED_MODULE_0___default()(this.end_date + " " + this.end_time).format('YYYY-MM-DD HH:mm:ss');
       var _this$$data = this.$data,
           title = _this$$data.title,
           description = _this$$data.description,
@@ -11207,7 +11286,7 @@ __webpack_require__.r(__webpack_exports__);
           club_id = _this$$data.club_id,
           user_id = _this$$data.user_id;
       this.$apollo.mutate({
-        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["CREATE_MEET_MUTATION"],
+        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_1__["CREATE_MEET_MUTATION"],
         variables: {
           title: title,
           description: description,
@@ -11317,11 +11396,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ClubQuery',
   data: function data() {
     return {
       club: [],
+      clubs: [],
       // id: Math.floor(Math.random() * 16 + 1)
       id: 16,
       loginSwitch: false
@@ -11335,11 +11416,22 @@ __webpack_require__.r(__webpack_exports__);
           id: this.id
         };
       }
+    },
+    clubs: {
+      query: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["ALL_CLUBS_QUERY"],
+      variables: function variables() {
+        return {};
+      }
     }
   },
   methods: {
     loginFunc: function loginFunc() {
       this.loginSwitch = true;
+    },
+    randomClub: function randomClub() {
+      var clubsCount = this.clubs.length;
+      console.log("Clubs lenght: " + clubsCount);
+      return 16;
     }
   },
   components: {
@@ -11507,6 +11599,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -11547,15 +11640,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ClubQuery',
   data: function data() {
-    if (!this.$route.params.id) {
-      this.$route.params.id = 1;
-    }
-
     console.log(this.$route.params.id);
     return {
       club: '',
@@ -11574,6 +11703,28 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    editClub: function editClub() {
+      var _this = this;
+
+      console.log("Update club mutation");
+      var name = this.$refs.ClubName.value;
+      var description = this.$refs.ClubDescription.value;
+      this.$apollo.mutate({
+        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["UPDATE_CLUB_MUTATION"],
+        variables: {
+          id: this.id,
+          name: name,
+          description: description
+        }
+      }).then(function (response) {
+        _this.$apollo.queries.club.refetch();
+      })["catch"](function (error) {
+        // This should log the error object but is just printing out the message
+        console.log(error);
+
+        _this.$apollo.queries.club.refetch();
+      }); //location.reload()
+    },
     destroyClub: function destroyClub() {
       console.log("Destroy club mutation");
       this.$apollo.mutate({
@@ -11585,6 +11736,94 @@ __webpack_require__.r(__webpack_exports__);
         // This should log the error object but is just printing out the message
         console.log(error);
       });
+      this.$router.push({
+        name: 'me'
+      }); //location.reload()
+    },
+    uploadCover: function uploadCover(_ref) {
+      var _this2 = this;
+
+      var _ref$target$files = _ref.target.files,
+          files = _ref$target$files === void 0 ? [] : _ref$target$files;
+      console.log(this.id);
+
+      if (!files.length) {
+        return;
+      }
+
+      this.$apollo.mutate({
+        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["UPLOAD_COVER_CLUB_MUTATION"],
+        variables: {
+          file: files[0],
+          id: this.id
+        },
+        context: {
+          hasUpload: true
+        }
+      }).then(function (response) {
+        console.log("Then work!)");
+
+        _this2.$apollo.queries.club.refetch();
+      })["catch"](function (error) {
+        console.log("Error!)");
+
+        _this2.$apollo.queries.club.refetch(); // This should log the error object but is just printing out the message
+
+
+        console.log(error);
+      });
+    },
+    uploadAvatar: function uploadAvatar(_ref2) {
+      var _this3 = this;
+
+      var _ref2$target$files = _ref2.target.files,
+          files = _ref2$target$files === void 0 ? [] : _ref2$target$files;
+      console.log(this.id);
+
+      if (!files.length) {
+        return;
+      }
+
+      console.log("uload Avatar");
+      this.$apollo.mutate({
+        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["UPLOAD_AVATAR_CLUB_MUTATION"],
+        variables: {
+          file: files[0],
+          id: this.id
+        },
+        context: {
+          hasUpload: true
+        }
+      }).then(function (response) {
+        console.log("Then work!)");
+
+        _this3.$apollo.queries.club.refetch();
+      })["catch"](function (error) {
+        console.log("Error!)");
+
+        _this3.$apollo.queries.club.refetch(); // This should log the error object but is just printing out the message
+
+
+        console.log(error);
+      });
+    },
+    destroyAvatar: function destroyAvatar() {
+      var _this4 = this;
+
+      this.$apollo.mutate({
+        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["DESTROY_AVATAR_CLUB_MUTATION"],
+        variables: {
+          id: this.id
+        }
+      })["catch"](function (error) {
+        console.log("Error!)");
+
+        _this4.$apollo.queries.club.refetch(); // This should log the error object but is just printing out the message
+
+
+        console.log(error);
+      });
+      this.$apollo.queries.club.refetch();
     }
   }
 });
@@ -11601,6 +11840,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_graphql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/graphql */ "./resources/js/constants/graphql.js");
+//
+//
 //
 //
 //
@@ -11719,6 +11960,14 @@ __webpack_require__.r(__webpack_exports__);
           console.log("text find");
           return true;
         }
+      }
+
+      return false;
+    },
+    checkAdmin: function checkAdmin() {
+      // `this` указывает на экземпляр vmvar user_id = 1;
+      if (this.club.creator.id == this.me.id) {
+        return true;
       }
 
       return false;
@@ -12295,7 +12544,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.files = files[0];
       this.$apollo.mutate({
-        mutation: _constants_graphql__WEBPACK_IMPORTED_MODULE_0__["UPLOAD_FILES_MUTATION"],
+        mutation: UPLOAD_FILES_MUTATION,
         variables: {
           file: files[0],
           id: this.id
@@ -77874,68 +78123,173 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "component" }, [
-    _c("div", { staticClass: "flex flex-column mt3" }, [
-      _c("h2", [_vm._v("Створити клуб")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Ім'я")]),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.name,
-            expression: "name"
-          }
-        ],
-        staticClass: "mb2",
-        attrs: { type: "text", placeholder: "A name" },
-        domProps: { value: _vm.name },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.name = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("p", [_vm._v("Опис")]),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.description,
-            expression: "description"
-          }
-        ],
-        staticClass: "mb2",
-        attrs: { type: "text", placeholder: "The Description" },
-        domProps: { value: _vm.description },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.description = $event.target.value
-          }
-        }
-      })
-    ]),
+  return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v("Створити клуб")]),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.createClub()
+    _c("form", [
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-row" }, [
+          _c("label", { attrs: { for: "exampleFormControlInput1" } }, [
+            _vm._v("Title")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "exampleFormControlInput1",
+              placeholder: "name@example.com"
+            },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-row" }, [
+          _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+            _vm._v("Description")
+          ]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.description,
+                expression: "description"
+              }
+            ],
+            ref: "ClubDescription",
+            staticClass: "form-control",
+            attrs: { id: "exampleFormControlTextarea1", rows: "3" },
+            domProps: { value: _vm.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.description = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { attrs: { for: "exampleFormControlSelect1" } }, [
+              _vm._v("Min Age")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "form-control",
+                attrs: { id: "exampleFormControlSelect1" }
+              },
+              _vm._l(88, function(n) {
+                return _c("option", [_vm._v(_vm._s(n + 11))])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { attrs: { for: "exampleFormControlSelect1" } }, [
+              _vm._v("Max Age")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "form-control",
+                attrs: { id: "exampleFormControlSelect1" }
+              },
+              _vm._l(87, function(n) {
+                return _c("option", [_vm._v(_vm._s(n + 12))])
+              }),
+              0
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-row" }, [
+          _c("label", { attrs: { for: "exampleFormControlSelect2" } }, [
+            _vm._v("Tags")
+          ]),
+          _vm._v("\n        " + _vm._s(_vm.selectedTags) + "\n        "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.selectedTags,
+                  expression: "selectedTags"
+                }
+              ],
+              staticClass: "form-control",
+              staticStyle: { height: "250px" },
+              attrs: { multiple: "", id: "exampleFormControlSelect2" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.selectedTags = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            _vm._l(_vm.hobby_lists, function(item) {
+              return _c("option", { key: item.id }, [_vm._v(_vm._s(item.name))])
+            }),
+            0
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              return _vm.createClub()
+            }
           }
-        }
-      },
-      [_vm._v("Створити")]
-    )
+        },
+        [_vm._v("Create")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -77960,133 +78314,224 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "component" }, [
-    _c("div", { staticClass: "flex flex-column mt3" }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.title,
-            expression: "title"
-          }
-        ],
-        staticClass: "mb2",
-        attrs: { type: "text", placeholder: "A title" },
-        domProps: { value: _vm.title },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+  return _c("div", { staticClass: "container" }, [
+    _c("form", { staticClass: "needs-validation", attrs: { novalidate: "" } }, [
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "col-md-12 mb-3" }, [
+          _c("label", { attrs: { for: "validationTooltip01" } }, [
+            _vm._v("Title meet")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.title,
+                expression: "title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "validationTooltip01", required: "" },
+            domProps: { value: _vm.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.title = $event.target.value
+              }
             }
-            _vm.title = $event.target.value
-          }
-        }
-      }),
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "valid-tooltip" }, [
+            _vm._v("\n          Looks good!\n        ")
+          ])
+        ])
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.description,
-            expression: "description"
-          }
-        ],
-        staticClass: "mb2",
-        attrs: { type: "text", placeholder: "The Description" },
-        domProps: { value: _vm.description },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "col-md-12 mb-3" }, [
+          _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+            _vm._v("Description")
+          ]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.description,
+                expression: "description"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "exampleFormControlTextarea1", rows: "3" },
+            domProps: { value: _vm.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.description = $event.target.value
+              }
             }
-            _vm.description = $event.target.value
-          }
-        }
-      }),
+          })
+        ])
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.beginning_date,
-            expression: "beginning_date"
-          }
-        ],
-        staticClass: "mb2",
-        attrs: { type: "text", placeholder: "A beginning date" },
-        domProps: { value: _vm.beginning_date },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.beginning_date = $event.target.value
-          }
-        }
-      }),
+      _vm._m(0),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.end_date,
-            expression: "end_date"
-          }
-        ],
-        staticClass: "mb2",
-        attrs: { type: "text", placeholder: "The end date" },
-        domProps: { value: _vm.end_date },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "col-md-4 mb-3" }, [
+          _c("label", [_vm._v(" Start data")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.beginning_date,
+                expression: "beginning_date"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "date", max: "3000-12-31", min: _vm.nowDate },
+            domProps: { value: _vm.beginning_date },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.beginning_date = $event.target.value
+              }
             }
-            _vm.end_date = $event.target.value
-          }
-        }
-      }),
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 mb-3" }, [
+          _c("label", [_vm._v("Start time")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.beginning_time,
+                expression: "beginning_time"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "time", min: "06:00", max: "23:59", required: "" },
+            domProps: { value: _vm.beginning_time },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.beginning_time = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4 mb-3" }, [
+          _c("label", [_vm._v("End data")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.end_date,
+                expression: "end_date"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "date", min: _vm.nowDate, max: "3000-12-31" },
+            domProps: { value: _vm.end_date },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.end_date = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 mb-3" }, [
+          _c("label", [_vm._v("End time")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.end_time,
+                expression: "end_time"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "time", min: "06:00", max: "23:59", required: "" },
+            domProps: { value: _vm.end_time },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.end_time = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.map_point,
-            expression: "map_point"
-          }
-        ],
-        staticClass: "mb2",
-        attrs: { type: "text", placeholder: "A map point" },
-        domProps: { value: _vm.map_point },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              return _vm.createMeet()
             }
-            _vm.map_point = $event.target.value
           }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.createMeet()
-          }
-        }
-      },
-      [_vm._v("Створити зустріч")]
-    )
+        },
+        [_vm._v("Create")]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row" }, [
+      _c("div", { staticClass: "col-md-12 mb-3" }, [
+        _c("label", { attrs: { for: "validationTooltip03" } }, [
+          _vm._v("City")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "validationTooltip03",
+            placeholder: "City",
+            required: ""
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-tooltip" }, [
+          _vm._v("\n          Please provide a valid city.\n        ")
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -78552,7 +78997,13 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container-fluid p-0 m-0" },
-    [_c("head-component"), _vm._v(" "), _c("router-view")],
+    [
+      _c("head-component"),
+      _vm._v(" "),
+      _c("router-view"),
+      _vm._v(" "),
+      _c("footer-component")
+    ],
     1
   )
 }
@@ -78611,37 +79062,133 @@ var render = function() {
     _vm._v(" "),
     _c("h1", [_vm._v("Setting")]),
     _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-file" }, [
+            _c("input", {
+              staticClass: "custom-file-input",
+              attrs: { type: "file", id: "inputGroupFile01" },
+              on: { change: _vm.uploadAvatar }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-file-label",
+                attrs: { for: "inputGroupFile01" }
+              },
+              [_vm._v("Choose file")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-append" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-secondary",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.destroyAvatar()
+                  }
+                }
+              },
+              [_vm._v("Delete")]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-file" }, [
+            _c("input", {
+              staticClass: "custom-file-input",
+              attrs: { type: "file", id: "inputGroupFile02" },
+              on: { change: _vm.uploadCover }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-file-label",
+                attrs: { for: "inputGroupFile02" }
+              },
+              [_vm._v("Choose file")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-danger",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              return _vm.destroyClub()
+            }
+          }
+        },
+        [_vm._v("Destroy club")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "exampleFormControlInput1" } }, [
+          _vm._v("Name")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          ref: "ClubName",
+          staticClass: "form-control",
+          attrs: { type: "text", id: "exampleFormControlInput1" },
+          domProps: { value: _vm.club.name }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+          _vm._v("Description")
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          ref: "ClubDescription",
+          staticClass: "form-control",
+          attrs: { id: "exampleFormControlTextarea1", rows: "3" },
+          domProps: { value: _vm.club.description }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              return _vm.editClub()
+            }
+          }
+        },
+        [_vm._v("Save")]
+      )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
         { staticClass: "col" },
         [
-          _c("h3", [_vm._v("Зміна аватарки")]),
-          _vm._v(" "),
-          _c("upload-files", { attrs: { id: _vm.id } }),
-          _vm._v(" "),
-          _c("h3", [_vm._v("Зміна обкладинки")]),
-          _vm._v(" "),
-          _c("upload-cover", { attrs: { id: _vm.id } }),
-          _vm._v(" "),
-          _c("h3", [_vm._v("Видалення аватарки")]),
-          _vm._v(" "),
-          _c("destroy-avatar-club", { attrs: { id: _vm.club.id } }),
-          _vm._v(" "),
-          _c("h3", [_vm._v("Видалення клубу")]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.destroyClub()
-                }
-              }
-            },
-            [_vm._v("Destroy club")]
-          ),
-          _vm._v(" "),
           _c("h3", [_vm._v("Зустріч")]),
           _vm._v(" "),
           _c("create-meet", { attrs: { club_id: _vm.id } }),
@@ -78653,7 +79200,36 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [_vm._v("Avatar")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [_vm._v("Cover")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-outline-secondary", attrs: { type: "button" } },
+        [_vm._v("Delete")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -78689,78 +79265,94 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _vm.me
-        ? _c("div", { staticClass: "col-md-12" }, [
-            !_vm.member
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary float-right",
-                    staticStyle: { margin: "10px" },
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.addClubUser(_vm.club.id)
+        ? _c(
+            "div",
+            { staticClass: "col-md-12" },
+            [
+              !_vm.member
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary float-right",
+                      staticStyle: { margin: "10px" },
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.addClubUser(_vm.club.id)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Стати учасником")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.member
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary float-right",
-                    staticStyle: {
-                      margin: "10px",
-                      "background-color": "rgb(218,87,103)"
                     },
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteClubUser(_vm.club.id)
+                    [_vm._v("Стати учасником")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.member
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary float-right",
+                      staticStyle: {
+                        margin: "10px",
+                        "background-color": "rgb(218,87,103)"
+                      },
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteClubUser(_vm.club.id)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Покинути")]
-                )
-              : _vm._e()
-          ])
+                    },
+                    [_vm._v("Покинути")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.checkAdmin
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-light float-right",
+                      staticStyle: { margin: "10px" },
+                      attrs: { to: { name: "settingClub" }, type: "button" }
+                    },
+                    [_vm._v("Налаштування")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.checkAdmin
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-primary float-right",
+                      staticStyle: { margin: "10px" },
+                      attrs: { to: { name: "createMeet" }, type: "button" }
+                    },
+                    [_vm._v("Створити зустріч")]
+                  )
+                : _vm._e()
+            ],
+            1
+          )
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col" },
-          [
-            _c("img", {
-              staticClass: "card-img-top",
-              staticStyle: {
-                height: "200px",
-                width: "200px",
-                "border-radius": "50%",
-                "object-fit": "cover",
-                border: "3px solid #ffffff",
-                position: "absolute",
-                left: "0px",
-                top: "-150px"
-              },
-              attrs: { src: "/storage/" + _vm.club.avatar_src }
-            }),
-            _vm._v(" "),
-            _c("div", { attrs: { id: "name" } }, [
-              _vm._v(_vm._s(_vm.club.name))
-            ]),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              { attrs: { id: "setting", to: { name: "settingClub" } } },
-              [_vm._v("Налаштування")]
-            )
-          ],
-          1
-        )
+        _c("div", { staticClass: "col" }, [
+          _c("img", {
+            staticClass: "card-img-top",
+            staticStyle: {
+              height: "200px",
+              width: "200px",
+              "border-radius": "50%",
+              "object-fit": "cover",
+              border: "3px solid #ffffff",
+              position: "absolute",
+              left: "0px",
+              top: "-150px"
+            },
+            attrs: { src: "/storage/" + _vm.club.avatar_src }
+          }),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "name" } }, [_vm._v(_vm._s(_vm.club.name))])
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -80248,7 +80840,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "inputSurname" } }, [_vm._v("Email")]),
+        _c("label", { attrs: { for: "" } }, [_vm._v("Email")]),
         _vm._v(" "),
         _c("div", { staticClass: "input-group mb-3" }, [
           _vm._m(0),
@@ -80456,6 +81048,54 @@ var staticRenderFns = [
         [_vm._v("@")]
       )
     ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/footer.vue?vue&type=template&id=585a4226&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/footer.vue?vue&type=template&id=585a4226& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "footer",
+      { staticClass: "page-footer font-small mdb-color pt-4" },
+      [
+        _c("div", { staticClass: "container text-center text-md-left" }, [
+          _c("div", { staticClass: "row d-flex align-items-center" }, [
+            _c("div", { staticClass: "col-md-7 col-lg-8" }, [
+              _c("p", { staticClass: "text-center text-md-left" }, [
+                _vm._v("© 2020 Copyright. v0.3.0. \r\n            "),
+                _c("a", { attrs: { href: "https://t.me/Qweeik" } }, [
+                  _vm._v("Contact")
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -96435,6 +97075,7 @@ vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('destroy-avatar-club', __we
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('show-club', __webpack_require__(/*! ./components/ShowClub.vue */ "./resources/js/components/ShowClub.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('register-user', __webpack_require__(/*! ./components/firstPage/RegisterUser.vue */ "./resources/js/components/firstPage/RegisterUser.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('head-component', __webpack_require__(/*! ./components/Header.vue */ "./resources/js/components/Header.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('footer-component', __webpack_require__(/*! ./components/footer.vue */ "./resources/js/components/footer.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.component('login-component', __webpack_require__(/*! ./components/firstPage/LoginComponent.vue */ "./resources/js/components/firstPage/LoginComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -96463,6 +97104,7 @@ var defaultOptions = {
 };
 var token = localStorage.getItem('token');
 var httpOptions = {
+  //uri: 'http://pudding.io//graphql',
   uri: '/graphql',
   headers: {
     'authorization': token ? "Bearer ".concat(token) : ''
@@ -96506,6 +97148,8 @@ var Clubs = __webpack_require__(/*! ./components/ShowClubs.vue */ "./resources/j
 var My_Clubs = __webpack_require__(/*! ./components/ShowMyClubs.vue */ "./resources/js/components/ShowMyClubs.vue");
 
 var Meet = __webpack_require__(/*! ./components/ShowMeet.vue */ "./resources/js/components/ShowMeet.vue");
+
+var createMeet = __webpack_require__(/*! ./components/CreateMeet.vue */ "./resources/js/components/CreateMeet.vue");
 
 var firstPage = __webpack_require__(/*! ./components/FirstPage.vue */ "./resources/js/components/FirstPage.vue");
 
@@ -96556,6 +97200,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
     path: '/myclubs',
     name: 'myclubs',
     component: My_Clubs["default"]
+  }, {
+    path: '/meet/create',
+    name: 'createMeet',
+    component: createMeet["default"]
   }, {
     path: '/meet/:id',
     name: 'meet',
@@ -98285,6 +98933,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/footer.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/footer.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _footer_vue_vue_type_template_id_585a4226___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./footer.vue?vue&type=template&id=585a4226& */ "./resources/js/components/footer.vue?vue&type=template&id=585a4226&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _footer_vue_vue_type_template_id_585a4226___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _footer_vue_vue_type_template_id_585a4226___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/footer.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/footer.vue?vue&type=template&id=585a4226&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/footer.vue?vue&type=template&id=585a4226& ***!
+  \***************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footer_vue_vue_type_template_id_585a4226___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./footer.vue?vue&type=template&id=585a4226& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/footer.vue?vue&type=template&id=585a4226&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footer_vue_vue_type_template_id_585a4226___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footer_vue_vue_type_template_id_585a4226___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/user/SettingUser.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/user/SettingUser.vue ***!
@@ -98427,16 +99128,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./resources/js/constants/graphql.js ***!
   \*******************************************/
-/*! exports provided: CREATE_CLUB_MUTATION, ALL_CLUBS_QUERY, UPLOAD_FILES_MUTATION, UPLOAD_COVER_CLUB_MUTATION, DESTROY_AVATAR_CLUB_MUTATION, DESTROY_CLUB_MUTATION, CLUB_QUERY, CREATE_MEET_MUTATION, MEET_QUERY, CREATE_USER_MUTATION, USER_QUERY, EMAIL_CHECK, USER_LOGIN, USER_LOGOUT, ME_DATA_QUERY, UPLOAD_USER_AVATAR_MUTATION, ADD_USER_MEET_MUTATION, DELETE_USER_MEET_MUTATION, ADD_USER_CLUB_MUTATION, DELETE_USER_CLUB_MUTATION */
+/*! exports provided: CREATE_CLUB_MUTATION, UPDATE_CLUB_MUTATION, ALL_CLUBS_QUERY, UPLOAD_AVATAR_CLUB_MUTATION, UPLOAD_COVER_CLUB_MUTATION, DESTROY_AVATAR_CLUB_MUTATION, DESTROY_COVER_CLUB_MUTATION, DESTROY_CLUB_MUTATION, CLUB_QUERY, CREATE_MEET_MUTATION, MEET_QUERY, CREATE_USER_MUTATION, USER_QUERY, EMAIL_CHECK, USER_LOGIN, USER_LOGOUT, ME_DATA_QUERY, UPLOAD_USER_AVATAR_MUTATION, ADD_USER_MEET_MUTATION, DELETE_USER_MEET_MUTATION, ADD_USER_CLUB_MUTATION, DELETE_USER_CLUB_MUTATION, ALL_HOBBY_QUERY */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_CLUB_MUTATION", function() { return CREATE_CLUB_MUTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_CLUB_MUTATION", function() { return UPDATE_CLUB_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ALL_CLUBS_QUERY", function() { return ALL_CLUBS_QUERY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_FILES_MUTATION", function() { return UPLOAD_FILES_MUTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_AVATAR_CLUB_MUTATION", function() { return UPLOAD_AVATAR_CLUB_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_COVER_CLUB_MUTATION", function() { return UPLOAD_COVER_CLUB_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DESTROY_AVATAR_CLUB_MUTATION", function() { return DESTROY_AVATAR_CLUB_MUTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DESTROY_COVER_CLUB_MUTATION", function() { return DESTROY_COVER_CLUB_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DESTROY_CLUB_MUTATION", function() { return DESTROY_CLUB_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLUB_QUERY", function() { return CLUB_QUERY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_MEET_MUTATION", function() { return CREATE_MEET_MUTATION; });
@@ -98452,10 +99155,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_USER_MEET_MUTATION", function() { return DELETE_USER_MEET_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_USER_CLUB_MUTATION", function() { return ADD_USER_CLUB_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_USER_CLUB_MUTATION", function() { return DELETE_USER_CLUB_MUTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ALL_HOBBY_QUERY", function() { return ALL_HOBBY_QUERY; });
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
-function _templateObject20() {
+function _templateObject23() {
+  var data = _taggedTemplateLiteral(["\n  # 18\n  query AllHobbyList {\n    hobby_lists{\n      id\n      name\n    }\n  }\n"]);
+
+  _templateObject23 = function _templateObject23() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject22() {
   var data = _taggedTemplateLiteral(["\n  #17\n  mutation ($club_id: ID!) {\n    deleteUserClub(\n      club_id: $club_id\n    )\n  }\n"]);
+
+  _templateObject22 = function _templateObject22() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject21() {
+  var data = _taggedTemplateLiteral(["\n  #16\n  mutation ($club_id: ID!) {\n    addUserClub(\n      club_id: $club_id\n    )\n  }\n"]);
+
+  _templateObject21 = function _templateObject21() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject20() {
+  var data = _taggedTemplateLiteral(["\n  #15\n  mutation ($meet_id: ID!) {\n    deleteUserMeet(\n      meet_id: $meet_id\n    )\n  }\n"]);
 
   _templateObject20 = function _templateObject20() {
     return data;
@@ -98465,7 +99199,7 @@ function _templateObject20() {
 }
 
 function _templateObject19() {
-  var data = _taggedTemplateLiteral(["\n  #16\n  mutation ($club_id: ID!) {\n    addUserClub(\n      club_id: $club_id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #14\n  mutation ($meet_id: ID!) {\n    addUserMeet(\n      meet_id: $meet_id\n    )\n  }\n"]);
 
   _templateObject19 = function _templateObject19() {
     return data;
@@ -98475,7 +99209,7 @@ function _templateObject19() {
 }
 
 function _templateObject18() {
-  var data = _taggedTemplateLiteral(["\n  #15\n  mutation ($meet_id: ID!) {\n    deleteUserMeet(\n      meet_id: $meet_id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #13\n  mutation ($file: Upload!) {\n    uploadAvatarUser(\n      file: $file\n    )\n  }\n"]);
 
   _templateObject18 = function _templateObject18() {
     return data;
@@ -98485,7 +99219,7 @@ function _templateObject18() {
 }
 
 function _templateObject17() {
-  var data = _taggedTemplateLiteral(["\n  #14\n  mutation ($meet_id: ID!) {\n    addUserMeet(\n      meet_id: $meet_id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 12\n  query AllMeQuery {\n    me{\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      },\n      meets{\n        id,\n        title\n        club{\n          id\n          name\n          avatar_src\n        }\n      }\n    }\n  }\n"]);
 
   _templateObject17 = function _templateObject17() {
     return data;
@@ -98495,7 +99229,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n  #13\n  mutation ($file: Upload!) {\n    uploadAvatarUser(\n      file: $file\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n# 11\nmutation logout {\n  logout{\n    status\n  }\n}\n"]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -98505,7 +99239,7 @@ function _templateObject16() {
 }
 
 function _templateObject15() {
-  var data = _taggedTemplateLiteral(["\n  # 12\n  query AllMeQuery {\n    me{\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      },\n      meets{\n        id,\n        title\n        club{\n          id\n          name\n          avatar_src\n        }\n      }\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n# 11\nmutation login($email: String!, $password: String!) {\n    login(\n      input: {\n      username: $email,\n      password: $password,\n      }\n    ) {\n      access_token\n      token_type\n    }\n}\n"]);
 
   _templateObject15 = function _templateObject15() {
     return data;
@@ -98515,7 +99249,7 @@ function _templateObject15() {
 }
 
 function _templateObject14() {
-  var data = _taggedTemplateLiteral(["\n# 11\nmutation logout {\n  logout{\n    status\n  }\n}\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 10\n  query EmailCheck($email: String!){\n    Check_email(email: $email)\n  }\n"]);
 
   _templateObject14 = function _templateObject14() {
     return data;
@@ -98525,7 +99259,7 @@ function _templateObject14() {
 }
 
 function _templateObject13() {
-  var data = _taggedTemplateLiteral(["\n# 11\nmutation login($email: String!, $password: String!) {\n    login(\n      input: {\n      username: $email,\n      password: $password,\n      }\n    ) {\n      access_token\n      token_type\n    }\n}\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 9\n  query GetUser($id: ID!){\n    user(id: $id){\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      }\n      meets{\n        id\n        title\n        club{\n          id\n          name\n          avatar_src\n        }\n      }\n    }\n  }\n"]);
 
   _templateObject13 = function _templateObject13() {
     return data;
@@ -98535,7 +99269,7 @@ function _templateObject13() {
 }
 
 function _templateObject12() {
-  var data = _taggedTemplateLiteral(["\n  # 10\n  query EmailCheck($email: String!){\n    Check_email(email: $email)\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 8\n  mutation register($name: String!, $surname: String!, $email: String!, $password: String!, $password_confirmation: String!, $birthday: String!) {\n      register(\n        input: {\n        name: $name,\n        surname: $surname,\n        email: $email,\n        password: $password,\n        password_confirmation: $password_confirmation,\n        birthday: $birthday,\n        }\n      ) {\n        tokens{\n          access_token\n          token_type\n        }\n      }\n  }\n"]);
 
   _templateObject12 = function _templateObject12() {
     return data;
@@ -98545,7 +99279,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["\n  # 9\n  query GetUser($id: ID!){\n    user(id: $id){\n      id,\n      name,\n      surname,\n      birthday,\n      description,\n      avatar_src,\n      created_at,\n      email,\n      avatar_src,\n      clubs{\n        id\n        name\n        avatar_src\n        description\n      }\n      meets{\n        id\n        title\n        club{\n          id\n          name\n          avatar_src\n        }\n      }\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 7\n  query meet($id: Int!) {\n    meet(id: $id) {\n      id\n      club_id\n      user_id\n      title\n      description\n      beginning_date\n      end_date\n      map_point\n      club{\n        id\n        name\n        avatar_src\n        cover_src\n        description\n      }\n      user{\n        id\n        name\n        avatar_src\n      }\n      users{\n        id\n        name\n        surname\n        email\n        avatar_src\n      }\n    }\n  }\n"]);
 
   _templateObject11 = function _templateObject11() {
     return data;
@@ -98555,7 +99289,7 @@ function _templateObject11() {
 }
 
 function _templateObject10() {
-  var data = _taggedTemplateLiteral(["\n  # 8\n  mutation register($name: String!, $surname: String!, $email: String!, $password: String!, $password_confirmation: String!, $birthday: String!) {\n      register(\n        input: {\n        name: $name,\n        surname: $surname,\n        email: $email,\n        password: $password,\n        password_confirmation: $password_confirmation,\n        birthday: $birthday,\n        }\n      ) {\n        tokens{\n          access_token\n          token_type\n        }\n      }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 6\n  mutation createMeet($title: String!, $description: String!, $beginning_date: DateTime!, $end_date: DateTime!, $map_point: String!, $club_id: String!, $user_id: String!) {\n    createMeet(\n      title: $title,\n      description: $description,\n      beginning_date: $beginning_date,\n      end_date: $end_date,\n      map_point: $map_point,\n      club_id: $club_id,\n      user_id: $user_id,\n    ) {\n      id\n      title\n      description\n    }\n  }\n"]);
 
   _templateObject10 = function _templateObject10() {
     return data;
@@ -98565,7 +99299,7 @@ function _templateObject10() {
 }
 
 function _templateObject9() {
-  var data = _taggedTemplateLiteral(["\n  # 7\n  query meet($id: Int!) {\n    meet(id: $id) {\n      id\n      club_id\n      user_id\n      title\n      description\n      beginning_date\n      end_date\n      map_point\n      club{\n        id\n        name\n        avatar_src\n        cover_src\n        description\n      }\n      user{\n        id\n        name\n        avatar_src\n      }\n      users{\n        id\n        name\n        surname\n        email\n        avatar_src\n      }\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 5\n  query club($id: Int!) {\n    club(id: $id) {\n      id,\n      name,\n      description,\n      avatar_src,\n      cover_src,\n      meets{\n        id,\n        title,\n        description,\n        beginning_date,\n        map_point,\n        end_date,\n        user_id,\n      },\n      hobbyes{\n        id\n        name\n      },\n      users{\n        id\n        name\n      },\n      creator{\n        id\n        name\n      }\n    }\n  }\n"]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -98575,7 +99309,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n  # 6\n  mutation createMeet($title: String!, $description: String!, $beginning_date: DateTime!, $end_date: DateTime!, $map_point: String!, $club_id: String!, $user_id: String!) {\n    createMeet(\n      title: $title,\n      description: $description,\n      beginning_date: $beginning_date,\n      end_date: $end_date,\n      map_point: $map_point,\n      club_id: $club_id,\n      user_id: $user_id,\n    ) {\n      id\n      title\n      description\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #4\n  mutation ($id: ID!) {\n    deleteClub(\n      id: $id\n    ){\n      id\n    }\n  }\n"]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -98585,7 +99319,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n  # 5\n  query club($id: Int!) {\n    club(id: $id) {\n      id,\n      name,\n      description,\n      avatar_src,\n      cover_src,\n      meets{\n        id,\n        title,\n        description,\n        beginning_date,\n        map_point,\n        end_date,\n        user_id,\n      },\n      hobbyes{\n        id\n        name\n      },\n      users{\n        id\n        name\n      },\n      creator{\n        id\n        name\n      }\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #4\n  mutation ($id: ID!) {\n    destroyCoverClub(\n      id: $id\n    )\n  }\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -98595,7 +99329,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n  #4\n  mutation ($id: ID!) {\n    deleteClub(\n      id: $id\n    ){\n      id\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #4\n  mutation ($id: ID!) {\n    destroyAvatarClub(\n      id: $id\n    )\n  }\n"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -98605,7 +99339,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  #4\n  mutation ($id: ID!) {\n    destroyAvatarClub(\n      id: $id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #3\n  mutation ($file: Upload!, $id: ID!) {\n    uploadCoverClub(\n      file: $file,\n      id: $id\n    )\n  }\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -98615,7 +99349,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  #3\n  mutation ($file: Upload!, $id: ID!) {\n    uploadCoverClub(\n      file: $file,\n      id: $id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  #3\n  mutation ($file: Upload!, $id: ID!) {\n    uploadAvatarClub(\n      file: $file,\n      id: $id\n    )\n  }\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -98625,7 +99359,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  #3\n  mutation ($file: Upload!, $id: ID!) {\n    uploadAvatarClub(\n      file: $file,\n      id: $id\n    )\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 2\n  query AllClubsQuery {\n    clubs{\n      id,\n      name,\n      description,\n      avatar_src,\n      cover_src,\n    },\n    meets{\n      id\n      title\n      description\n    },\n  }\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -98635,7 +99369,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  # 2\n  query AllClubsQuery {\n    clubs{\n      id,\n      name,\n      description,\n      avatar_src,\n      cover_src,\n    },\n    meets{\n      id\n      title\n      description\n    },\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  # 1\n  mutation updateClub($id: ID!, $name: String, $description: String) {\n    updateClub(\n      id: $id,\n      name: $name,\n      description: $description,\n    ) {\n      id\n      name\n      description\n    }\n  }\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -98659,25 +99393,28 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 // 1
 
 var CREATE_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject());
-var ALL_CLUBS_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject2());
-var UPLOAD_FILES_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject3());
-var UPLOAD_COVER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject4());
-var DESTROY_AVATAR_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject5());
-var DESTROY_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject6());
-var CLUB_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject7());
-var CREATE_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject8());
-var MEET_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject9());
-var CREATE_USER_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject10());
-var USER_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject11());
-var EMAIL_CHECK = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject12());
-var USER_LOGIN = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject13());
-var USER_LOGOUT = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject14());
-var ME_DATA_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject15());
-var UPLOAD_USER_AVATAR_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject16());
-var ADD_USER_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject17());
-var DELETE_USER_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject18());
-var ADD_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject19());
-var DELETE_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject20());
+var UPDATE_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject2());
+var ALL_CLUBS_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject3());
+var UPLOAD_AVATAR_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject4());
+var UPLOAD_COVER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject5());
+var DESTROY_AVATAR_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject6());
+var DESTROY_COVER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject7());
+var DESTROY_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject8());
+var CLUB_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject9());
+var CREATE_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject10());
+var MEET_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject11());
+var CREATE_USER_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject12());
+var USER_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject13());
+var EMAIL_CHECK = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject14());
+var USER_LOGIN = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject15());
+var USER_LOGOUT = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject16());
+var ME_DATA_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject17());
+var UPLOAD_USER_AVATAR_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject18());
+var ADD_USER_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject19());
+var DELETE_USER_MEET_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject20());
+var ADD_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject21());
+var DELETE_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject22());
+var ALL_HOBBY_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject23());
 
 /***/ }),
 
@@ -98699,8 +99436,8 @@ var DELETE_USER_CLUB_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_0___default
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\projects\web project\domains\pudding\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\projects\web project\domains\pudding\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Projects\Web Project\domains\pudding\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Projects\Web Project\domains\pudding\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

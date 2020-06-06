@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputSurname">Email</label>
+        <label for="">Email</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">@</span>

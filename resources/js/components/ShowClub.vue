@@ -5,12 +5,14 @@
             <div v-if="me" class="col-md-12">
                   <button  v-if="!member" @click="addClubUser(club.id)" class="btn btn-primary float-right" type="button" style="margin: 10px;">Стати учасником</button>
                   <button  v-if="member" @click="deleteClubUser(club.id)" class="btn btn-primary float-right" type="button" style="margin: 10px;background-color: rgb(218,87,103);">Покинути</button>
+                  <router-link v-if="checkAdmin" :to="{ name: 'settingClub' }" class="btn btn-light float-right" type="button" style="margin: 10px;">Налаштування</router-link>
+                  <router-link v-if="checkAdmin" :to="{ name: 'createMeet' }" class="btn btn-primary float-right" type="button" style="margin: 10px;">Створити зустріч</router-link>
             </div>
             <div class="row">
                 <div class="col">
                     <img :src="'/storage/' + club.avatar_src" class="card-img-top" style="height: 200px; width: 200px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; position: absolute; left: 0px; top: -150px; ">
                     <div id="name">{{club.name}}</div>
-                    <router-link id="setting" :to="{ name: 'settingClub' }">Налаштування</router-link>
+                    <!-- <router-link id="setting" :to="{ name: 'settingClub' }">Налаштування</router-link> -->
                 </div>
             </div>
             <div class="row" style= "padding-top: 50px;">
@@ -121,6 +123,13 @@ import {  ME_DATA_QUERY } from '../constants/graphql'
                 return true;
               }
           }
+          return false;
+        },
+        checkAdmin: function () {
+          // `this` указывает на экземпляр vmvar user_id = 1;
+            if (this.club.creator.id == this.me.id) {
+                return true;
+              }
           return false;
         }
     }

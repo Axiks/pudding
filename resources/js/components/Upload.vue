@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import { UPLOAD_FILES_MUTATION } from '../constants/graphql'
+  import { UPLOAD_AVATAR_CLUB_MUTATION } from '../constants/graphql'
   export default {
     props: ['id'],
     data () {

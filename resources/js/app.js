@@ -35,6 +35,7 @@ Vue.component('destroy-avatar-club', require('./components/DestroyAvatarClub.vue
 Vue.component('show-club', require('./components/ShowClub.vue').default);
 Vue.component('register-user', require('./components/firstPage/RegisterUser.vue').default);
 Vue.component('head-component', require('./components/Header.vue').default);
+Vue.component('footer-component', require('./components/footer.vue').default);
 
 Vue.component('login-component', require('./components/firstPage/LoginComponent.vue').default);
 
@@ -71,6 +72,7 @@ const defaultOptions = {
 
 const token = localStorage.getItem('token');
 const httpOptions = {
+  //uri: 'http://pudding.io//graphql',
   uri: '/graphql',
   headers: {
     'authorization': token ? `Bearer ${token}` : ''
@@ -118,6 +120,7 @@ var settingClub = require('./components/SettingClub.vue');
 var Clubs = require('./components/ShowClubs.vue');
 var My_Clubs = require('./components/ShowMyClubs.vue');
 var Meet = require('./components/ShowMeet.vue');
+var createMeet = require('./components/CreateMeet.vue');
 var firstPage = require('./components/FirstPage.vue');
 var registerUser = require('./components/firstPage/RegisterUser.vue');
 var showUser = require('./components/ShowUser.vue');
@@ -139,6 +142,7 @@ var router = new VueRouter({
     { path: '/club/:id/setting', name: 'settingClub', component: settingClub.default },
     { path: '/clubs', name: 'clubs', component: Clubs.default },
     { path: '/myclubs', name: 'myclubs', component: My_Clubs.default },
+    { path: '/meet/create', name: 'createMeet', component: createMeet.default },
     { path: '/meet/:id', name: 'meet', component: Meet.default },
     { path: '/firstPage', name: 'firstPage', component: firstPage.default },
     { path: '/registration', name: 'registerUser', component: registerUser.default },
