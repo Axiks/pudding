@@ -51,13 +51,6 @@
                 </div>
                 <button  @click="editClub()" type="button" class="btn btn-primary">Save</button>
             </form>
-            <div class="row">
-                <div class="col">
-                    <h3>Зустріч</h3>
-                    <create-meet :club_id="id"></create-meet>
-                    <show-meets :meets_data="club.meets"></show-meets>
-                </div>
-            </div>
     </div>
 </template>
 <script>

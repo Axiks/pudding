@@ -35,7 +35,7 @@
         <div class="form-row">
           <label for="exampleFormControlSelect2">Tags</label>
           {{selectedTags}}
-          <select multiple v-model="selectedTags" class="form-control" id="exampleFormControlSelect2" style="height: 250px">
+          <select multiple :value="selectedTags" class="form-control" id="exampleFormControlSelect2" style="height: 250px">
             <option v-for="item in hobby_lists" :key="item.id ">{{item.name}}</option>
           </select>
         </div>

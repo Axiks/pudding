@@ -236,6 +236,13 @@ export const USER_QUERY = gql`
   }
 `
 
+export const DESTROY_AVATAR_USER_MUTATION = gql`
+  #4
+  mutation destroyAvatarUser{
+      destroyAvatarUser
+  }
+`
+
 export const EMAIL_CHECK = gql`
   # 10
   query EmailCheck($email: String!){

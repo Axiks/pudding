@@ -35,9 +35,11 @@ Vue.component('destroy-avatar-club', require('./components/DestroyAvatarClub.vue
 Vue.component('show-club', require('./components/ShowClub.vue').default);
 Vue.component('register-user', require('./components/firstPage/RegisterUser.vue').default);
 Vue.component('head-component', require('./components/Header.vue').default);
-Vue.component('footer-component', require('./components/footer.vue').default);
+Vue.component('footer-component', require('./components/Footer.vue').default);
 
 Vue.component('login-component', require('./components/firstPage/LoginComponent.vue').default);
+
+Vue.component('google-map', VueGoogleMaps.Map);
 
 
 
@@ -104,6 +106,20 @@ const apolloProvider = new VueApollo({
    defaultClient: apolloClient,
  })
 
+ //Google Map
+
+ import * as VueGoogleMaps from 'vue2-google-maps'
+ Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAlJ5TS7Ef614P_-PN_UQlbLemADXLOu9Q',
+    libraries: 'places', // This is required if you use the Autocomplete plugin
+    // OR: libraries: 'places,drawing'
+    // OR: libraries: 'places,drawing,visualization'
+    // (as you require)
+  },
+  installComponents: false
+});
+
 
 /**
  * Router
@@ -127,8 +143,8 @@ var showUser = require('./components/ShowUser.vue');
 var loginPage = require('./components/firstPage/LoginPageBoxComponent.vue');
 var showMe = require('./components/ShowMe.vue');
 var settingMe = require('./components/user/SettingUser.vue');
+var map = require('./components/Map.vue');
 var error404 = require('./components/404.vue');
-
 
 
 var router = new VueRouter({
@@ -142,7 +158,7 @@ var router = new VueRouter({
     { path: '/club/:id/setting', name: 'settingClub', component: settingClub.default },
     { path: '/clubs', name: 'clubs', component: Clubs.default },
     { path: '/myclubs', name: 'myclubs', component: My_Clubs.default },
-    { path: '/meet/create', name: 'createMeet', component: createMeet.default },
+    { path: '/meet/create', name: 'createMeet', component: createMeet.default, props: true },
     { path: '/meet/:id', name: 'meet', component: Meet.default },
     { path: '/firstPage', name: 'firstPage', component: firstPage.default },
     { path: '/registration', name: 'registerUser', component: registerUser.default },
@@ -150,6 +166,7 @@ var router = new VueRouter({
     { path: '/login', name: 'login', component: loginPage.default },
     { path: '/me', name: 'me', component: showMe.default},
     { path: '/setting', name: 'setting', component: settingMe.default},
+    { path: '/map', name: 'setting', component: map.default},
     { path: '*', name: 'error404', component: error404.default },
   ]
 })

@@ -6,7 +6,7 @@
                   <button  v-if="!member" @click="addClubUser(club.id)" class="btn btn-primary float-right" type="button" style="margin: 10px;">Стати учасником</button>
                   <button  v-if="member" @click="deleteClubUser(club.id)" class="btn btn-primary float-right" type="button" style="margin: 10px;background-color: rgb(218,87,103);">Покинути</button>
                   <router-link v-if="checkAdmin" :to="{ name: 'settingClub' }" class="btn btn-light float-right" type="button" style="margin: 10px;">Налаштування</router-link>
-                  <router-link v-if="checkAdmin" :to="{ name: 'createMeet' }" class="btn btn-primary float-right" type="button" style="margin: 10px;">Створити зустріч</router-link>
+                  <router-link v-if="checkAdmin" :to="{ name: 'createMeet', params: {club_id: id} }" class="btn btn-primary float-right" type="button" style="margin: 10px;">Створити зустріч</router-link>
             </div>
             <div class="row">
                 <div class="col">
@@ -24,11 +24,7 @@
             <div v-if="club.hobbyes.length != 0" class="row" style= "margin-bottom: 50px;">
                 <div class="shadow-sm col block mt-3">
                     <h3>Теги</h3>
-                    <ul id="example-1">
-                        <li v-for="item in club.hobbyes" :key="item.id">
-                            {{ item.name }}
-                        </li>
-                    </ul>
+                    <a v-for="item in club.hobbyes" :key="item.id" href="#" class="badge badge-primary p-2 m-1">{{ item.name }}</a>
                 </div>
             </div>
             <div v-if="club.users.length != 0" class="row" style= "margin-bottom: 50px;">
@@ -111,7 +107,8 @@ import {  ME_DATA_QUERY } from '../constants/graphql'
                 club_id: id,
             },
         })
-        }
+        },
+
     },
     computed: {
         // геттер вычисляемого значения
