@@ -78,6 +78,12 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <h1>Map</h1>
+                    <map-view v-bind:post-cordinate="map_obj"></map-view>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12" style="padding-bottom: 100px;"></div>
             </div>
         </div>
@@ -92,13 +98,14 @@
   import { ADD_USER_MEET_MUTATION } from '../constants/graphql'
   import { DELETE_USER_MEET_MUTATION } from '../constants/graphql'
   import {  ME_DATA_QUERY } from '../constants/graphql'
+  import { latLng } from "leaflet";
   export default {
     name: 'ShowMeet',
     data () {
         return{
             meet: '',
             me: null,
-            id: this.$route.params.id
+            id: this.$route.params.id,
         }
     },
     apollo: {
@@ -158,6 +165,11 @@
           }
           
           return false;
+        },
+        map_obj: function () {
+          var coordinatParse = this.meet.map_point.split(',')
+          var map = latLng(coordinatParse[0], coordinatParse[1])
+          return map
         }
     }
   }

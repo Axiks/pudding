@@ -11,22 +11,22 @@
     },
     "devDependencies": {
         "axios": "^0.19.2",
-        "bootstrap": "^4.4.1",
+        "bootstrap": "^4.5.0",
         "cross-env": "^5.2.1",
-        "jquery": "^3.5.0",
+        "jquery": "^3.5.1",
         "laravel-mix": "^4.1.4",
         "lodash": "^4.17.13",
         "popper.js": "^1.16.1",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.26.5",
+        "sass": "^1.26.9",
         "sass-loader": "^7.1.0",
         "vue": "^2.6.11",
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "apollo-boost": "^0.4.7",
-        "apollo-cache-inmemory": "^1.6.5",
-        "apollo-client": "^2.6.8",
+        "apollo-boost": "^0.4.9",
+        "apollo-cache-inmemory": "^1.6.6",
+        "apollo-client": "^2.6.10",
         "apollo-link": "^1.2.14",
         "apollo-link-batch-http": "^1.2.14",
         "apollo-link-error": "^1.1.13",
@@ -34,10 +34,12 @@
         "apollo-upload-client": "^11.0.0",
         "graphql": "^14.6.0",
         "graphql-tag": "^2.10.3",
-        "moment": "^2.26.0",
+        "leaflet": "^1.6.0",
+        "moment": "^2.27.0",
         "vue-apollo": "^3.0.3",
         "vue-loading-overlay": "^3.3.2",
-        "vue-router": "^3.1.6",
-        "vue2-google-maps": "^0.10.7"
+        "vue-router": "^3.3.4",
+        "vue2-google-maps": "^0.10.7",
+        "vue2-leaflet": "^2.5.2"
     }
 }

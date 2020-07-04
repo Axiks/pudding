@@ -36,10 +36,13 @@ Vue.component('show-club', require('./components/ShowClub.vue').default);
 Vue.component('register-user', require('./components/firstPage/RegisterUser.vue').default);
 Vue.component('head-component', require('./components/Header.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
+Vue.component('map-view', require('./components/MapViewPoint.vue').default);
+Vue.component('map-select', require('./components/MapSelectPoint.vue').default);
+
 
 Vue.component('login-component', require('./components/firstPage/LoginComponent.vue').default);
 
-Vue.component('google-map', VueGoogleMaps.Map);
+//Vue.component('google-map', VueGoogleMaps.Map);
 
 
 
@@ -108,17 +111,37 @@ const apolloProvider = new VueApollo({
 
  //Google Map
 
- import * as VueGoogleMaps from 'vue2-google-maps'
- Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyAlJ5TS7Ef614P_-PN_UQlbLemADXLOu9Q',
-    libraries: 'places', // This is required if you use the Autocomplete plugin
-    // OR: libraries: 'places,drawing'
-    // OR: libraries: 'places,drawing,visualization'
-    // (as you require)
-  },
-  installComponents: false
+//  import * as VueGoogleMaps from 'vue2-google-maps'
+//  Vue.use(VueGoogleMaps, {
+//   load: {
+//     key: 'AIzaSyAlJ5TS7Ef614P_-PN_UQlbLemADXLOu9Q',
+//     libraries: 'places', // This is required if you use the Autocomplete plugin
+//     // OR: libraries: 'places,drawing'
+//     // OR: libraries: 'places,drawing,visualization'
+//     // (as you require)
+//   },
+//   installComponents: false
+// });
+
+//OpenMap
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
+import 'leaflet/dist/leaflet.js';
+import 'leaflet/dist/leaflet.css';
+
+import { Icon } from 'leaflet';
+
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
+
+Vue.component('l-map', LMap);
+Vue.component('l-tile-layer', LTileLayer);
+Vue.component('l-marker', LMarker);
+
+
 
 
 /**
@@ -143,7 +166,6 @@ var showUser = require('./components/ShowUser.vue');
 var loginPage = require('./components/firstPage/LoginPageBoxComponent.vue');
 var showMe = require('./components/ShowMe.vue');
 var settingMe = require('./components/user/SettingUser.vue');
-var map = require('./components/Map.vue');
 var error404 = require('./components/404.vue');
 
 
@@ -166,7 +188,6 @@ var router = new VueRouter({
     { path: '/login', name: 'login', component: loginPage.default },
     { path: '/me', name: 'me', component: showMe.default},
     { path: '/setting', name: 'setting', component: settingMe.default},
-    { path: '/map', name: 'setting', component: map.default},
     { path: '*', name: 'error404', component: error404.default },
   ]
 })

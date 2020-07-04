@@ -17,15 +17,6 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="col-md-12 mb-3">
-          <label for="validationTooltip03">City</label>
-          <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
-          <div class="invalid-tooltip">
-            Please provide a valid city.
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
         <div class="col-md-4 mb-3">
           <label > Start data</label>
           <input v-model="beginning_date" type="date" max="3000-12-31" 
@@ -45,6 +36,21 @@
           <label >End time</label>
           <input v-model="end_time"  type="time"
               min="06:00" max="23:59" required class="form-control">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12 mb-3">
+          <label for="validationTooltip03">City</label>
+          <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
+          <div class="invalid-tooltip">
+            Please provide a valid city.
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12 mb-3">
+          <label for="validationTooltip03">Map</label>
+          <map-select @cordinate='oncCordinate'></map-select>
         </div>
       </div>
       <button @click="createMeet()" class="btn btn-primary" type="button">Create</button>
@@ -78,7 +84,7 @@
         beginning_time: null,
         end_date: null,
         end_time: null,
-        map_point: '37.235,-115.811111',
+        map_point: null,
         user_id: 1,
       }
     },
@@ -106,6 +112,11 @@
           // This should log the error object but is just printing out the message
           console.log(error);
         })
+      },
+      oncCordinate(data){
+        console.log('cord: ', data['markers'][0])
+        var coordinate = data['markers'][0]
+        this.map_point = coordinate['lat'] + ', ' +  coordinate['lng']
       }
     }
   }
