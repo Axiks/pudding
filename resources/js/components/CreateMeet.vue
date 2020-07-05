@@ -19,7 +19,7 @@
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <label > Start data</label>
-          <input v-model="beginning_date" type="date" max="3000-12-31" 
+          <input v-model="beginning_date" type="date" max="3000-12-31"
                 :min="nowDate" class="form-control">
         </div>
         <div class="col-md-2 mb-3">
@@ -40,8 +40,8 @@
       </div>
       <div class="form-row">
         <div class="col-md-12 mb-3">
-          <label for="validationTooltip03">City</label>
-          <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
+          <label for="validationTooltip03">Address</label>
+          <input v-model="address" type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
           <div class="invalid-tooltip">
             Please provide a valid city.
           </div>
@@ -85,6 +85,7 @@
         end_date: null,
         end_time: null,
         map_point: null,
+        address:  null,
         user_id: 1,
       }
     },
@@ -114,9 +115,11 @@
         })
       },
       oncCordinate(data){
-        console.log('cord: ', data['markers'][0])
-        var coordinate = data['markers'][0]
-        this.map_point = coordinate['lat'] + ', ' +  coordinate['lng']
+        console.log('cord: ', data.markers.center)
+        // console.log('cord: ', data['markers'][0])
+         var coordinate = data.markers.center
+         this.map_point = coordinate.lat + ', ' +  coordinate.lng
+         this.address = data.markers.properties.display_name
       }
     }
   }
